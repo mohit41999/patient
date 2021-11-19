@@ -5,45 +5,115 @@ class EnterField extends StatelessWidget {
   final String hintText;
   final String labelText;
   TextInputType textInputType;
-  final int maxLength;
+  //final int maxLength;
   bool showcursor;
   bool readonly;
   bool obscure;
-  Widget icon;
+  Widget widget;
   //final FormFieldValidator<String> validator;
   TextEditingController controller;
-  EnterField(this.hintText, this.labelText, this.icon, this.controller,
-      {this.textInputType = TextInputType.text,
-      this.readonly = false,
-      this.showcursor = true,
-      this.obscure = false,
-      // this.validator = ValidateTextField.validateNull,
-      this.maxLength = 25});
+  EnterField(
+    this.hintText,
+    this.labelText,
+    this.controller, {
+    this.textInputType = TextInputType.text,
+    this.readonly = false,
+    this.showcursor = true,
+    this.obscure = false,
+    this.widget = const SizedBox(),
+    // this.validator = ValidateTextField.validateNull,
+    //this.maxLength = 25
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: TextFormField(
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        // validator: validator,
-        maxLength: maxLength,
-        // maxLengthEnforcement: MaxLengthEnforcement.enforced,
-        obscureText: obscure,
-        enableSuggestions: true,
-        showCursor: showcursor,
-        readOnly: readonly,
-        keyboardType: textInputType,
-        controller: controller,
-        decoration: InputDecoration(
-          suffixIcon: icon,
-          hintText: hintText,
-          floatingLabelBehavior: FloatingLabelBehavior.always,
-          hintStyle: GoogleFonts.montserrat(
-            color: Colors.grey,
-            fontSize: 12,
+    return ConstrainedBox(
+      constraints: const BoxConstraints(minHeight: 10, maxHeight: 50),
+      child: Container(
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              blurRadius: 10,
+              offset: const Offset(2, 5),
+            ),
+          ],
+        ),
+        child: TextFormField(
+          // autovalidateMode: AutovalidateMode.onUserInteraction,
+          // validator: validator,
+          // maxLength: maxLength,
+          // maxLengthEnforcement: MaxLengthEnforcement.enforced,
+          obscureText: obscure,
+          enableSuggestions: true,
+          showCursor: showcursor,
+          readOnly: readonly,
+          keyboardType: textInputType,
+          controller: controller,
+          decoration: InputDecoration(
+            enabled: true,
+            enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: new BorderSide(color: Colors.transparent)),
+            border: new OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: new BorderSide(color: Colors.transparent)),
+            // enabledBorder: InputBorder.none,
+            // errorBorder: InputBorder.none,
+            // disabledBorder: InputBorder.none,
+            filled: true,
+            labelText: labelText,
+            suffixIcon: widget,
+            labelStyle: GoogleFonts.montserrat(
+                fontSize: 14, color: Colors.black.withOpacity(0.6)),
+            hintText: hintText,
+            hintStyle: GoogleFonts.montserrat(
+                fontSize: 14, color: Colors.black.withOpacity(0.6)),
+            fillColor: Colors.white,
           ),
-          labelText: labelText,
-          labelStyle: GoogleFonts.montserrat(color: Colors.white, fontSize: 20),
+        ),
+      ),
+    );
+  }
+}
+
+class commonBtn extends StatelessWidget {
+  final String s;
+  final Color bgcolor;
+  final Color textColor;
+  final VoidCallback onPressed;
+  final double height;
+  final double width;
+  const commonBtn({
+    Key? key,
+    required this.s,
+    required this.bgcolor,
+    required this.textColor,
+    required this.onPressed,
+    this.height = 50,
+    this.width = double.infinity,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: height,
+      width: width,
+      child: TextButton(
+        style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(bgcolor),
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16.0),
+            ))),
+        onPressed: onPressed,
+        child: Text(
+          s,
+          style: GoogleFonts.montserrat(
+              fontSize: 18,
+              color: textColor,
+              letterSpacing: 1,
+              fontWeight: FontWeight.w700),
         ),
       ),
     );
