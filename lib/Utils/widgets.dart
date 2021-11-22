@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'colorsandstyles.dart';
 
 class EnterField extends StatelessWidget {
   final String hintText;
@@ -84,6 +86,9 @@ class commonBtn extends StatelessWidget {
   final VoidCallback onPressed;
   final double height;
   final double width;
+  final double textSize;
+  final FontWeight fontWeight;
+  final double borderRadius;
   const commonBtn({
     Key? key,
     required this.s,
@@ -92,6 +97,9 @@ class commonBtn extends StatelessWidget {
     required this.onPressed,
     this.height = 50,
     this.width = double.infinity,
+    this.textSize = 16,
+    this.fontWeight = FontWeight.w700,
+    this.borderRadius = 16.0,
   }) : super(key: key);
 
   @override
@@ -104,18 +112,89 @@ class commonBtn extends StatelessWidget {
             backgroundColor: MaterialStateProperty.all<Color>(bgcolor),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16.0),
+              borderRadius: BorderRadius.circular(borderRadius),
             ))),
         onPressed: onPressed,
         child: Text(
           s,
           style: GoogleFonts.montserrat(
-              fontSize: 18,
+              fontSize: textSize,
               color: textColor,
               letterSpacing: 1,
-              fontWeight: FontWeight.w700),
+              fontWeight: fontWeight),
         ),
       ),
+    );
+  }
+}
+
+class commonRow extends StatelessWidget {
+  final String Title;
+  final String subTitle;
+
+  const commonRow({
+    Key? key,
+    required this.Title,
+    required this.subTitle,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          Title,
+          style: GoogleFonts.montserrat(
+              fontWeight: FontWeight.bold, fontSize: 20, color: appblueColor),
+        ),
+        Row(
+          children: [
+            Text(
+              subTitle,
+              style: GoogleFonts.montserrat(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 10,
+                  decoration: TextDecoration.underline,
+                  color: apptealColor),
+            ),
+            Icon(
+              Icons.arrow_forward,
+              color: appblueColor,
+              size: 10,
+            )
+          ],
+        )
+      ],
+    );
+  }
+}
+
+class rowTextIcon extends StatelessWidget {
+  final String asset;
+  final String text;
+  const rowTextIcon({
+    Key? key,
+    required this.asset,
+    required this.text,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        SvgPicture.asset(
+          asset,
+          height: 14,
+        ),
+        SizedBox(
+          width: 2,
+        ),
+        Text(
+          text,
+          style: GoogleFonts.montserrat(fontSize: 12),
+        ),
+      ],
     );
   }
 }

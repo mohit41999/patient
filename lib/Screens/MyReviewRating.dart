@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:patient/Utils/colorsandstyles.dart';
 
 class MyReviewRatingsScreen extends StatefulWidget {
   const MyReviewRatingsScreen({Key? key}) : super(key: key);
@@ -21,7 +22,7 @@ class _MyReviewRatingsScreenState extends State<MyReviewRatingsScreen> {
           title: Text(
             'My Reviews & Ratings',
             style: GoogleFonts.montserrat(
-                color: Color(0xff1EAE98), fontWeight: FontWeight.bold),
+                color: apptealColor, fontWeight: FontWeight.bold),
           ),
         ),
         body: ListView.builder(
@@ -43,7 +44,7 @@ class _MyReviewRatingsScreenState extends State<MyReviewRatingsScreen> {
                             trailing: Text(
                               '27/09/2021',
                               style: GoogleFonts.lato(
-                                  color: Color(0xff1EAE98),
+                                  color: apptealColor,
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold),
                             ),

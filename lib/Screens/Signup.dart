@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:patient/Screens/SignInScreen.dart';
-import 'package:patient/Utils/appConstants.dart';
+import 'package:patient/Utils/colorsandstyles.dart';
+import 'package:patient/Utils/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -43,7 +44,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 'New to DCP ? Please provide your details !!!',
                 style: GoogleFonts.montserrat(
                   fontSize: 16,
-                  color: Color(0xff1EAE98),
+                  color: apptealColor,
                 ),
               ),
               SizedBox(
@@ -113,7 +114,7 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               commonBtn(
                   s: 'Sign Up',
-                  bgcolor: Color(0xff233E8B),
+                  bgcolor: appblueColor,
                   textColor: Colors.white,
                   onPressed: () {
                     Navigator.push(

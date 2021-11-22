@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:patient/Screens/MyReviewRating.dart';
+import 'package:patient/Utils/colorsandstyles.dart';
 
 class MyQuestionsScreen extends StatefulWidget {
   const MyQuestionsScreen({Key? key}) : super(key: key);
@@ -22,7 +23,7 @@ class _MyQuestionsScreenState extends State<MyQuestionsScreen> {
           title: Text(
             'My Questions',
             style: GoogleFonts.montserrat(
-                color: Color(0xff1EAE98), fontWeight: FontWeight.bold),
+                color: apptealColor, fontWeight: FontWeight.bold),
           ),
         ),
         body: ListView.builder(
@@ -57,7 +58,7 @@ class _MyQuestionsScreenState extends State<MyQuestionsScreen> {
                                 Text(
                                   '  27/09/2021',
                                   style: GoogleFonts.lato(
-                                      color: Color(0xff1EAE98),
+                                      color: apptealColor,
                                       fontSize: 12,
                                       fontWeight: FontWeight.bold),
                                 ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:patient/Screens/MyQuestionsScreen.dart';
+import 'package:patient/Utils/colorsandstyles.dart';
 
 class MyPrescriptionsScreen extends StatefulWidget {
   const MyPrescriptionsScreen({Key? key}) : super(key: key);
@@ -21,7 +22,7 @@ class _MyPrescriptionsScreenState extends State<MyPrescriptionsScreen> {
           title: Text(
             'My Prescriptions',
             style: GoogleFonts.montserrat(
-                color: Color(0xff1EAE98), fontWeight: FontWeight.bold),
+                color: apptealColor, fontWeight: FontWeight.bold),
           ),
         ),
         body: ListView.builder(

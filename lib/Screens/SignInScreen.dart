@@ -5,7 +5,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:patient/Screens/Home.dart';
 import 'package:patient/Screens/MyPrescriprions.dart';
 import 'package:patient/Screens/Signup.dart';
-import 'package:patient/Utils/appConstants.dart';
+import 'package:patient/Utils/colorsandstyles.dart';
+import 'package:patient/Utils/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -36,7 +37,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 'Sign In',
                 style: GoogleFonts.montserrat(
                     fontSize: 30,
-                    color: Color(0xff233E8B),
+                    color: appblueColor,
                     fontWeight: FontWeight.w500),
               ),
               SizedBox(
@@ -46,7 +47,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 'Please Sign In to your account !!!',
                 style: GoogleFonts.montserrat(
                   fontSize: 16,
-                  color: Color(0xff1EAE98),
+                  color: apptealColor,
                 ),
               ),
               SizedBox(
@@ -79,7 +80,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 child: Text(
                   'Forgot Password ?',
                   textAlign: TextAlign.right,
-                  style: GoogleFonts.montserrat(color: Color(0xff233E8B)),
+                  style: GoogleFonts.montserrat(color: appblueColor),
                 ),
               ),
               SizedBox(
@@ -98,7 +99,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 child: Text(
                   'or Sign In with Fingerprint or Face',
                   textAlign: TextAlign.right,
-                  style: GoogleFonts.montserrat(color: Color(0xff1EAE98)),
+                  style: GoogleFonts.montserrat(color: apptealColor),
                 ),
               ),
               SizedBox(
@@ -119,7 +120,7 @@ class _SignInScreenState extends State<SignInScreen> {
               ),
               commonBtn(
                   s: 'Sign In',
-                  bgcolor: Color(0xff233E8B),
+                  bgcolor: appblueColor,
                   textColor: Colors.white,
                   onPressed: () {
                     Navigator.push(context,
@@ -137,7 +138,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         TextSpan(
                             text: ' Sign up',
                             style: TextStyle(
-                                color: Color(0xff1EAE98), fontSize: 18),
+                                color: apptealColor, fontSize: 18),
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
                                 Navigator.push(
