@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:patient/Screens/Home.dart';
 import 'package:patient/Screens/MyPrescriprions.dart';
 import 'package:patient/Screens/Signup.dart';
 import 'package:patient/Utils/appConstants.dart';
@@ -121,10 +122,8 @@ class _SignInScreenState extends State<SignInScreen> {
                   bgcolor: Color(0xff233E8B),
                   textColor: Colors.white,
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => MyPrescriptionsScreen()));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => HomeScreen()));
                   }),
               SizedBox(
                 height: 20,
