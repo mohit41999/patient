@@ -1,16 +1,17 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:patient/Screens/MyQuestionsScreen.dart';
+import 'package:patient/Screens/MYScreens/MyReviewRating.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
 
-class MyPrescriptionsScreen extends StatefulWidget {
-  const MyPrescriptionsScreen({Key? key}) : super(key: key);
+class MyQuestionsScreen extends StatefulWidget {
+  const MyQuestionsScreen({Key? key}) : super(key: key);
 
   @override
-  _MyPrescriptionsScreenState createState() => _MyPrescriptionsScreenState();
+  _MyQuestionsScreenState createState() => _MyQuestionsScreenState();
 }
 
-class _MyPrescriptionsScreenState extends State<MyPrescriptionsScreen> {
+class _MyQuestionsScreenState extends State<MyQuestionsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +21,7 @@ class _MyPrescriptionsScreenState extends State<MyPrescriptionsScreen> {
           elevation: 0,
           centerTitle: true,
           title: Text(
-            'My Prescriptions',
+            'My Questions',
             style: GoogleFonts.montserrat(
                 color: apptealColor, fontWeight: FontWeight.bold),
           ),
@@ -35,7 +36,7 @@ class _MyPrescriptionsScreenState extends State<MyPrescriptionsScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => MyQuestionsScreen()));
+                              builder: (context) => MyReviewRatingsScreen()));
                     },
                     child: Card(
                       elevation: 3,
@@ -44,10 +45,24 @@ class _MyPrescriptionsScreenState extends State<MyPrescriptionsScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              'Lorem ipsum dolor sit amet, consetetur.',
-                              style: GoogleFonts.lato(
-                                  fontWeight: FontWeight.bold, fontSize: 14),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Lorem ipsum dolor sit amet, consetetur. ?',
+                                  style: GoogleFonts.lato(
+                                      color: Color(0xff252525),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  '  27/09/2021',
+                                  style: GoogleFonts.lato(
+                                      color: apptealColor,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
                             ),
                             SizedBox(
                               height: 8,

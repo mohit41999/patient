@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:patient/Screens/DoctorProfile.dart';
+import 'package:patient/Screens/DoctorScreens/DoctorProfile.dart';
+import 'package:patient/Screens/ProductDetails.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:patient/Utils/widgets.dart';
-
-final TextStyle KHeader =
-    GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 16);
-final TextStyle KPrice =
-    GoogleFonts.montserrat(fontWeight: FontWeight.w500, color: apptealColor);
-final TextStyle KBodyText =
-    GoogleFonts.montserrat(color: Colors.grey, fontSize: 12);
 
 class ProductPage extends StatelessWidget {
   const ProductPage({Key? key}) : super(key: key);
@@ -129,7 +123,13 @@ class ProductPage extends StatelessWidget {
                                         s: 'Buy Now',
                                         bgcolor: apptealColor,
                                         textColor: Colors.white,
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      ProductDetails()));
+                                        },
                                         height: 30,
                                         width: 120,
                                         textSize: 12,

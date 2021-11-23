@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:patient/Screens/Home.dart';
-import 'package:patient/Screens/MyPrescriprions.dart';
+import 'package:patient/Screens/MYScreens/MyPrescriprions.dart';
 import 'package:patient/Screens/Signup.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
 import 'package:patient/Utils/widgets.dart';
@@ -137,8 +137,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       children: <TextSpan>[
                         TextSpan(
                             text: ' Sign up',
-                            style: TextStyle(
-                                color: apptealColor, fontSize: 18),
+                            style: TextStyle(color: apptealColor, fontSize: 18),
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
                                 Navigator.push(

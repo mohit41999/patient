@@ -1,17 +1,16 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:patient/Screens/MyReviewRating.dart';
+import 'package:patient/Screens/MYScreens/MyQuestionsScreen.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
 
-class MyQuestionsScreen extends StatefulWidget {
-  const MyQuestionsScreen({Key? key}) : super(key: key);
+class MyPrescriptionsScreen extends StatefulWidget {
+  const MyPrescriptionsScreen({Key? key}) : super(key: key);
 
   @override
-  _MyQuestionsScreenState createState() => _MyQuestionsScreenState();
+  _MyPrescriptionsScreenState createState() => _MyPrescriptionsScreenState();
 }
 
-class _MyQuestionsScreenState extends State<MyQuestionsScreen> {
+class _MyPrescriptionsScreenState extends State<MyPrescriptionsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +20,7 @@ class _MyQuestionsScreenState extends State<MyQuestionsScreen> {
           elevation: 0,
           centerTitle: true,
           title: Text(
-            'My Questions',
+            'My Prescriptions',
             style: GoogleFonts.montserrat(
                 color: apptealColor, fontWeight: FontWeight.bold),
           ),
@@ -36,7 +35,7 @@ class _MyQuestionsScreenState extends State<MyQuestionsScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => MyReviewRatingsScreen()));
+                              builder: (context) => MyQuestionsScreen()));
                     },
                     child: Card(
                       elevation: 3,
@@ -45,24 +44,10 @@ class _MyQuestionsScreenState extends State<MyQuestionsScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Lorem ipsum dolor sit amet, consetetur. ?',
-                                  style: GoogleFonts.lato(
-                                      color: Color(0xff252525),
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  '  27/09/2021',
-                                  style: GoogleFonts.lato(
-                                      color: apptealColor,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
+                            Text(
+                              'Lorem ipsum dolor sit amet, consetetur.',
+                              style: GoogleFonts.lato(
+                                  fontWeight: FontWeight.bold, fontSize: 14),
                             ),
                             SizedBox(
                               height: 8,

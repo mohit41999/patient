@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:patient/Screens/DoctorScreens/DoctorProfile4.dart';
+import 'package:patient/Screens/MedicineProfile.dart';
 import 'package:patient/Screens/Products.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
 import 'package:patient/Utils/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class DoctorProfile extends StatefulWidget {
-  const DoctorProfile({Key? key}) : super(key: key);
+class DoctorProfile3 extends StatefulWidget {
+  const DoctorProfile3({Key? key}) : super(key: key);
 
   @override
-  _DoctorProfileState createState() => _DoctorProfileState();
+  _DoctorProfile3State createState() => _DoctorProfile3State();
 }
 
-class _DoctorProfileState extends State<DoctorProfile> {
+class _DoctorProfile3State extends State<DoctorProfile3> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,11 +31,11 @@ class _DoctorProfileState extends State<DoctorProfile> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(10.0),
             child: GestureDetector(
               onTap: () {
-                // Navigator.push(context,
-                //     MaterialPageRoute(builder: (context) => ProductPage()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => DoctorProfile4()));
               },
               child: Container(
                 height: 40,
@@ -70,9 +72,9 @@ class _DoctorProfileState extends State<DoctorProfile> {
               ),
             ),
           ),
-          SizedBox(
-            height: 20,
-          ),
+          // SizedBox(
+          //   height: 10,
+          // ),
           Expanded(
             child: ListView.builder(
                 shrinkWrap: true,
@@ -81,12 +83,10 @@ class _DoctorProfileState extends State<DoctorProfile> {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
-                      height: 200,
+                      height: 190,
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(15),
-                            bottomRight: Radius.circular(15)),
+                        borderRadius: BorderRadius.circular(15),
                         boxShadow: [
                           BoxShadow(
                             color: Colors.grey.withOpacity(0.5),
@@ -105,8 +105,17 @@ class _DoctorProfileState extends State<DoctorProfile> {
                               children: [
                                 Expanded(
                                   flex: 1,
-                                  child: CircleAvatar(
-                                    radius: 50,
+                                  child: Container(
+                                    height: double.infinity,
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(15),
+                                        ),
+                                        image: DecorationImage(
+                                            image: AssetImage(
+                                                'assets/pngs/nursedoctor.png'),
+                                            fit: BoxFit.cover)),
                                   ),
                                 ),
                                 Expanded(
@@ -119,54 +128,26 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text('Dr. Daksh Kumar', style: KHeader),
-                                        Text('Hair Transplat Surgeon',
-                                            style: GoogleFonts.montserrat(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 12)),
-                                        rowTextIcon(
-                                          text: '17 yrs of exp. overall',
-                                          asset: 'assets/images/Group.svg',
-                                        ),
+                                        Text('Service category',
+                                            style: KHeader),
                                         Row(
                                           children: [
-                                            Expanded(
-                                              child: rowTextIcon(
-                                                text: 'Location',
+                                            rowTextIcon(
                                                 asset:
-                                                    'assets/images/Group 1182.svg',
-                                              ),
-                                            ),
-                                            Expanded(
-                                              child: rowTextIcon(
-                                                text: '95%',
-                                                asset:
-                                                    'assets/images/Icon awesome-thumbs-up.svg',
-                                              ),
-                                            ),
+                                                    'assets/pngs/payments_black_24dp (1).png',
+                                                text: 'Starting at'),
+                                            Text(
+                                              '\$199',
+                                              style: GoogleFonts.montserrat(
+                                                  color: apptealColor,
+                                                  fontSize: 13,
+                                                  fontWeight: FontWeight.bold),
+                                            )
                                           ],
                                         ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Expanded(
-                                              child: rowTextIcon(
-                                                text: 'Available Today',
-                                                asset:
-                                                    'assets/images/Path 2062.svg',
-                                              ),
-                                            ),
-                                            Expanded(
-                                              child: rowTextIcon(
-                                                text: '125',
-                                                asset:
-                                                    'assets/images/Icon awesome-star.svg',
-                                              ),
-                                            ),
-                                          ],
-                                        ),
+                                        Text(
+                                            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
+                                            style: KBodyText),
                                       ],
                                     ),
                                   ),
@@ -175,7 +156,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                             ),
                           ),
                           SizedBox(
-                            height: 50,
+                            height: 40,
                             width: double.infinity,
                             child: TextButton(
                               style: ButtonStyle(

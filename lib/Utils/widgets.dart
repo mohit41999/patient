@@ -83,6 +83,8 @@ class commonBtn extends StatelessWidget {
   final String s;
   final Color bgcolor;
   final Color textColor;
+  final Color borderColor;
+  final double borderWidth;
   final VoidCallback onPressed;
   final double height;
   final double width;
@@ -100,6 +102,8 @@ class commonBtn extends StatelessWidget {
     this.textSize = 16,
     this.fontWeight = FontWeight.w700,
     this.borderRadius = 16.0,
+    this.borderColor = Colors.white,
+    this.borderWidth = 0,
   }) : super(key: key);
 
   @override
@@ -112,8 +116,8 @@ class commonBtn extends StatelessWidget {
             backgroundColor: MaterialStateProperty.all<Color>(bgcolor),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(borderRadius),
-            ))),
+                    borderRadius: BorderRadius.circular(borderRadius),
+                    side: BorderSide(color: borderColor, width: borderWidth)))),
         onPressed: onPressed,
         child: Text(
           s,
@@ -183,7 +187,7 @@ class rowTextIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        SvgPicture.asset(
+        Image.asset(
           asset,
           height: 14,
         ),
@@ -193,6 +197,35 @@ class rowTextIcon extends StatelessWidget {
         Text(
           text,
           style: GoogleFonts.montserrat(fontSize: 12),
+        ),
+      ],
+    );
+  }
+}
+
+class titleColumn extends StatelessWidget {
+  final String title;
+  final String value;
+  const titleColumn({
+    Key? key,
+    required this.title,
+    required this.value,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Text(
+          title,
+          style: GoogleFonts.lato(
+              fontSize: 10, color: Color(0xff252525).withOpacity(0.5)),
+        ),
+        Text(
+          value,
+          style: GoogleFonts.lato(fontSize: 12, color: Color(0xff252525)),
         ),
       ],
     );
