@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:patient/Screens/DoctorScreens/doctor_profile_1.dart';
+import 'package:patient/Screens/DoctorScreens/DoctorProfile.dart';
+import 'package:patient/Screens/LabProfile.dart';
+import 'package:patient/Screens/MedicineProfile.dart';
 import 'package:patient/Screens/Products.dart';
+import 'package:patient/Screens/Signup.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
 import 'package:patient/Utils/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:patient/controller/NavigationController.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -13,20 +19,64 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  List<Map<dynamic, dynamic>> hometile = [
+    {
+      'label': 'Doctor Consultaion',
+      'Screen': DoctorProfile(),
+      'profile': 'Rectangle 69.png'
+    },
+    {
+      'label': 'Health care & Other product',
+      'Screen': ProductPage(),
+      'profile': 'Rectangle 69.png'
+    },
+    {
+      'label': 'Home Care Servicies',
+      'Screen': HomeScreen(),
+      'profile': 'Rectangle 69.png'
+    },
+    {
+      'label': 'Stress buster zone',
+      'Screen': HomeScreen(),
+      'profile': 'Rectangle 69.png'
+    },
+    {
+      'label': 'Lab Tests',
+      'Screen': LabProfile(),
+      'profile': 'Rectangle 69.png'
+    },
+    {
+      'label': 'Ask Questions',
+      'Screen': HomeScreen(),
+      'profile': 'Rectangle 69.png'
+    },
+    {
+      'label': 'Medicine',
+      'Screen': MedicineProfile(),
+      'profile': 'Rectangle 69.png'
+    },
+    {
+      'label': 'Knowledge Forum',
+      'Screen': HomeScreen(),
+      'profile': 'Rectangle 69.png'
+    },
+  ];
   TextEditingController _search = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        centerTitle: true,
+        title: commonAppBarTitle(),
+        backgroundColor: appAppBarColor,
+        elevation: 0,
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             GestureDetector(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ProductPage()));
-              },
+              onTap: () {},
               child: Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: Container(
@@ -119,7 +169,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                     s: 'Consult Now',
                                     bgcolor: appblueColor,
                                     textColor: Colors.white,
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Push(context, DoctorProfile1());
+                                    },
                                     width: 120,
                                     height: 30,
                                     textSize: 12,
@@ -156,31 +208,39 @@ class _HomeScreenState extends State<HomeScreen> {
                           // crossAxisSpacing: 10,
                           // mainAxisSpacing: 10,
                           crossAxisCount: 2),
-                      itemCount: 10,
+                      itemCount: hometile.length,
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: const EdgeInsets.all(10),
-                          child: Column(
-                            children: [
-                              Container(
-                                height: 80,
-                                width: 80,
-                                decoration: BoxDecoration(
-                                  color: appblueColor,
-                                  borderRadius: BorderRadius.circular(5),
+                          child: GestureDetector(
+                            onTap: () {
+                              Push(context, hometile[index]['Screen']);
+                            },
+                            child: Column(
+                              children: [
+                                Container(
+                                  height: 80,
+                                  width: 80,
+                                  decoration: BoxDecoration(
+                                    color: appblueColor,
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                  child: Image.asset(
+                                      'assets/pngs/${hometile[index]['profile']}'),
                                 ),
-                                child: SvgPicture.asset(
-                                    'assets/images/Icon material-face.svg'),
-                              ),
-                              SizedBox(width: 10),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text('ll'),
-                                ],
-                              )
-                            ],
+                                SizedBox(width: 10),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      hometile[index]['label'].toString(),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
                           ),
                         );
                       },
@@ -222,19 +282,24 @@ class _HomeScreenState extends State<HomeScreen> {
                         itemBuilder: (context, index) {
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              children: [
-                                CircleAvatar(
-                                  radius: 50,
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  'Type',
-                                  style: GoogleFonts.montserrat(fontSize: 11),
-                                ),
-                              ],
+                            child: GestureDetector(
+                              onTap: () {
+                                Push(context, DoctorProfile());
+                              },
+                              child: Column(
+                                children: [
+                                  CircleAvatar(
+                                    radius: 50,
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(
+                                    'Type',
+                                    style: GoogleFonts.montserrat(fontSize: 11),
+                                  ),
+                                ],
+                              ),
                             ),
                           );
                         }),

@@ -25,7 +25,12 @@ class _DoctorProfileState extends State<DoctorProfile> {
         elevation: 20,
         splashColor: apptealColor,
       ),
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: commonAppBarTitle(),
+        centerTitle: true,
+        backgroundColor: appAppBarColor,
+        elevation: 0,
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -61,9 +66,9 @@ class _DoctorProfileState extends State<DoctorProfile> {
                       width: 5,
                     ),
                     Text(
-                      'Search',
+                      'Enter Doctor name, specialty, symptom',
                       style: GoogleFonts.montserrat(
-                          fontSize: 16,
+                          fontSize: 14,
                           color: Color(0xff161616).withOpacity(0.6)),
                     ),
                   ],

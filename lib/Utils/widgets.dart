@@ -203,6 +203,33 @@ class rowTextIcon extends StatelessWidget {
   }
 }
 
+class commonAppBarTitle extends StatelessWidget {
+  const commonAppBarTitle({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: ShaderMask(
+        blendMode: BlendMode.srcIn,
+        shaderCallback: (bounds) => LinearGradient(colors: [
+          Color(0xff233E8B),
+          Color(0xff1EAE98),
+        ]).createShader(
+          Rect.fromLTWH(0, 0, bounds.width, bounds.height),
+        ),
+        child: Text(
+          'DCP',
+          style: GoogleFonts.montserrat(
+            fontSize: 30.0,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class titleColumn extends StatelessWidget {
   final String title;
   final String value;

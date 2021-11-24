@@ -24,8 +24,10 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        centerTitle: true,
+        backgroundColor: appAppBarColor,
         elevation: 0,
+        title: commonAppBarTitle(),
       ),
       body: SingleChildScrollView(
         child: Padding(

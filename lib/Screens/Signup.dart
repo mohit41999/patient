@@ -21,8 +21,10 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         elevation: 0,
+        centerTitle: true,
+        title: commonAppBarTitle(),
       ),
       body: SingleChildScrollView(
         child: Padding(

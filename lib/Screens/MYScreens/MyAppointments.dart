@@ -20,13 +20,13 @@ class _MyAppointmentsState extends State<MyAppointments> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(FontAwesomeIcons.filter),
-        backgroundColor: apptealColor,
-        elevation: 20,
-        splashColor: apptealColor,
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {},
+      //   child: Icon(FontAwesomeIcons.filter),
+      //   backgroundColor: apptealColor,
+      //   elevation: 20,
+      //   splashColor: apptealColor,
+      // ),
       appBar: AppBar(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
