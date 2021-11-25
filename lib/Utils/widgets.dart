@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -75,6 +76,96 @@ class EnterField extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class TitleEnterField extends StatelessWidget {
+  final String hintText;
+  final String outsideText;
+  // final String labelText;
+  TextInputType textInputType;
+  //final int maxLength;
+  bool showcursor;
+  bool readonly;
+  bool obscure;
+  Widget widget;
+  //final FormFieldValidator<String> validator;
+  TextEditingController controller;
+  TitleEnterField(
+    this.hintText,
+    this.outsideText,
+    //this.labelText,
+    this.controller, {
+    this.textInputType = TextInputType.text,
+    this.readonly = false,
+    this.showcursor = true,
+    this.obscure = false,
+    this.widget = const SizedBox(),
+    // this.validator = ValidateTextField.validateNull,
+    //this.maxLength = 25
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(outsideText,
+            style:
+                TextStyle(fontSize: 14, color: Colors.black.withOpacity(0.6))),
+        SizedBox(height: 7),
+        ConstrainedBox(
+          constraints: const BoxConstraints(minHeight: 10, maxHeight: 50),
+          child: Container(
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  blurRadius: 10,
+                  offset: const Offset(2, 5),
+                ),
+              ],
+            ),
+            child: TextFormField(
+              // autovalidateMode: AutovalidateMode.onUserInteraction,
+              // validator: validator,
+              // maxLength: maxLength,
+              // maxLengthEnforcement: MaxLengthEnforcement.enforced,
+              obscureText: obscure,
+              enableSuggestions: true,
+              showCursor: showcursor,
+              readOnly: readonly,
+              keyboardType: textInputType,
+              controller: controller,
+              decoration: InputDecoration(
+                enabled: true,
+                enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: new BorderSide(color: Colors.transparent)),
+                border: new OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: new BorderSide(color: Colors.transparent)),
+                // enabledBorder: InputBorder.none,
+                // errorBorder: InputBorder.none,
+                // disabledBorder: InputBorder.none,
+                filled: true,
+                //labelText: labelText,
+                suffixIcon: widget,
+                labelStyle: TextStyle(
+                    fontSize: 14, color: Colors.black.withOpacity(0.6)),
+                hintText: hintText,
+                hintStyle: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black),
+                fillColor: Colors.white,
+              ),
+            ),
+          ),
+        ),
+        SizedBox(height: 15)
+      ],
     );
   }
 }
@@ -254,6 +345,50 @@ class titleColumn extends StatelessWidget {
           value,
           style: GoogleFonts.lato(fontSize: 12, color: Color(0xff252525)),
         ),
+      ],
+    );
+  }
+}
+
+class doctorProfileRow extends StatelessWidget {
+  const doctorProfileRow({
+    Key? key,
+    required this.title,
+    required this.value,
+  }) : super(key: key);
+  final String title;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          width: MediaQuery.of(context).size.width / 5,
+          child: Text(
+            title,
+            style: GoogleFonts.montserrat(
+                fontSize: 12, color: Color(0xff161616).withOpacity(0.6)),
+          ),
+        ),
+        SizedBox(
+          width: 15,
+        ),
+        Text('-'),
+        SizedBox(
+          width: 10,
+        ),
+        Container(
+          width: MediaQuery.of(context).size.width / 1.65,
+          child: Text(
+            value,
+            style: GoogleFonts.montserrat(
+                fontSize: 12,
+                color: Color(0xff161616),
+                fontWeight: FontWeight.bold),
+          ),
+        )
       ],
     );
   }
