@@ -33,12 +33,12 @@ class _HomeScreenState extends State<HomeScreen> {
     },
     {
       'label': 'Home Care Servicies',
-      'Screen': HomeScreen(),
+      'Screen': 'null',
       'profile': 'Rectangle 69.png'
     },
     {
       'label': 'Stress buster zone',
-      'Screen': HomeScreen(),
+      'Screen': 'null',
       'profile': 'Rectangle 69.png'
     },
     {
@@ -46,11 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
       'Screen': LabProfile(),
       'profile': 'Rectangle 69.png'
     },
-    {
-      'label': 'Ask Questions',
-      'Screen': HomeScreen(),
-      'profile': 'Rectangle 69.png'
-    },
+    {'label': 'Ask Questions', 'Screen': 'null', 'profile': 'Rectangle 69.png'},
     {
       'label': 'Medicine',
       'Screen': MedicineProfile(),
@@ -58,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
     },
     {
       'label': 'Knowledge Forum',
-      'Screen': HomeScreen(),
+      'Screen': 'null',
       'profile': 'Rectangle 69.png'
     },
   ];
@@ -250,7 +246,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           padding: const EdgeInsets.all(10),
                           child: GestureDetector(
                             onTap: () {
-                              Push(context, hometile[index]['Screen']);
+                              (hometile[index]['Screen'].toString() == 'null')
+                                  ? {print('blablabla')}
+                                  : Push(context, hometile[index]['Screen']);
                             },
                             child: Column(
                               children: [
