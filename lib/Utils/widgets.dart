@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:patient/controller/NavigationController.dart';
 import 'colorsandstyles.dart';
 
 class EnterField extends StatelessWidget {
@@ -226,11 +227,13 @@ class commonBtn extends StatelessWidget {
 class commonRow extends StatelessWidget {
   final String Title;
   final String subTitle;
+  final dynamic value;
 
   const commonRow({
     Key? key,
     required this.Title,
     required this.subTitle,
+    required this.value,
   }) : super(key: key);
 
   @override
@@ -243,22 +246,27 @@ class commonRow extends StatelessWidget {
           style: GoogleFonts.montserrat(
               fontWeight: FontWeight.bold, fontSize: 20, color: appblueColor),
         ),
-        Row(
-          children: [
-            Text(
-              subTitle,
-              style: GoogleFonts.montserrat(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 10,
-                  decoration: TextDecoration.underline,
-                  color: apptealColor),
-            ),
-            Icon(
-              Icons.arrow_forward,
-              color: appblueColor,
-              size: 10,
-            )
-          ],
+        GestureDetector(
+          onTap: () {
+            Push(context, value);
+          },
+          child: Row(
+            children: [
+              Text(
+                subTitle,
+                style: GoogleFonts.montserrat(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 10,
+                    decoration: TextDecoration.underline,
+                    color: apptealColor),
+              ),
+              Icon(
+                Icons.arrow_forward,
+                color: appblueColor,
+                size: 10,
+              )
+            ],
+          ),
         )
       ],
     );

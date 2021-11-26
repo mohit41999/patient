@@ -6,6 +6,7 @@ import 'package:patient/Screens/MedicineProfile.dart';
 import 'package:patient/Screens/Products.dart';
 import 'package:patient/Screens/Signup.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
+import 'package:patient/Utils/navigation_drawer.dart';
 import 'package:patient/Utils/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -70,7 +71,42 @@ class _HomeScreenState extends State<HomeScreen> {
         title: commonAppBarTitle(),
         backgroundColor: appAppBarColor,
         elevation: 0,
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Builder(
+            builder: (context) => GestureDetector(
+              child: Container(
+                width: 30,
+                height: 30,
+                child: Center(
+                  child: Icon(
+                    Icons.menu,
+                    color: appblueColor,
+                    size: 20,
+                  ),
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(5),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      blurRadius: 10,
+                      offset: const Offset(2, 5),
+                    ),
+                  ],
+                ),
+              ),
+              onTap: () {
+                setState(() {
+                  Scaffold.of(context).openDrawer();
+                });
+              },
+            ),
+          ),
+        ),
       ),
+      drawer: commonDrawer(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -262,6 +298,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: commonRow(
                       subTitle: 'View all',
                       Title: 'Find Your Doctors',
+                      value: DoctorProfile(),
                     ),
                   ),
                   Padding(
@@ -317,7 +354,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: commonRow(
-                        Title: 'Health Care Services', subTitle: 'View all'),
+                      Title: 'Health Care Services',
+                      subTitle: 'View all',
+                      value: DoctorProfile(),
+                    ),
                   ),
                   SizedBox(
                     height: 150,
@@ -385,7 +425,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: commonRow(
-                        Title: 'Health Checkup at Home', subTitle: 'View all'),
+                      Title: 'Health Checkup at Home',
+                      subTitle: 'View all',
+                      value: DoctorProfile,
+                    ),
                   ),
                   SizedBox(
                     height: 150,

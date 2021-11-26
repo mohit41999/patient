@@ -3,9 +3,11 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:patient/Screens/order_product.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:patient/Utils/widgets.dart';
+import 'package:patient/controller/NavigationController.dart';
 
 final Shader linearGradient = LinearGradient(
   colors: <Color>[Color(0xff233E8B), Color(0xff1EAE98)],
@@ -164,7 +166,9 @@ class _ProductDetailsState extends State<ProductDetails> {
                   s: 'Buy Now',
                   bgcolor: apptealColor,
                   textColor: Colors.white,
-                  onPressed: () {},
+                  onPressed: () {
+                    Push(context, OrderProduct());
+                  },
                   width: 155,
                   height: 52,
                   textSize: 16,

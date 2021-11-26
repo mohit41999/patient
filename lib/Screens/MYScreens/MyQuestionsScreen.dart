@@ -32,12 +32,7 @@ class _MyQuestionsScreenState extends State<MyQuestionsScreen> {
               return Column(
                 children: [
                   GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MyReviewRatingsScreen()));
-                    },
+                    onTap: () {},
                     child: Card(
                       elevation: 3,
                       child: Padding(

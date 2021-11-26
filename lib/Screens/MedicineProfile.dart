@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:patient/Screens/LabProfile.dart';
+import 'package:patient/Screens/order_medicine.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
 import 'package:patient/Utils/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:patient/controller/NavigationController.dart';
 
 class MedicineProfile extends StatefulWidget {
   const MedicineProfile({Key? key}) : super(key: key);
@@ -17,17 +19,19 @@ class _MedicineProfileState extends State<MedicineProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: commonAppBarTitle(),
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: appAppBarColor,
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: GestureDetector(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => LabProfile()));
-              },
+              onTap: () {},
               child: Container(
                 height: 40,
                 width: double.infinity,
@@ -141,7 +145,9 @@ class _MedicineProfileState extends State<MedicineProfile> {
                                     s: 'Add to Cart',
                                     bgcolor: Colors.white,
                                     textColor: appblueColor,
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Push(context, OrderMedicine());
+                                    },
                                     height: 30,
                                     textSize: 12,
                                     width: 130,

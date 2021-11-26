@@ -17,17 +17,19 @@ class _LabProfileState extends State<LabProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: commonAppBarTitle(),
+        elevation: 0,
+        backgroundColor: appAppBarColor,
+        centerTitle: true,
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: GestureDetector(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => DoctorProfile3()));
-              },
+              onTap: () {},
               child: Container(
                 height: 40,
                 width: double.infinity,

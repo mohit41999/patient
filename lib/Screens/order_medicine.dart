@@ -4,14 +4,14 @@ import 'package:patient/Utils/colorsandstyles.dart';
 import 'package:patient/Utils/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class OrderProduct extends StatefulWidget {
-  const OrderProduct({Key? key}) : super(key: key);
+class OrderMedicine extends StatefulWidget {
+  const OrderMedicine({Key? key}) : super(key: key);
 
   @override
-  State<OrderProduct> createState() => _OrderProductState();
+  State<OrderMedicine> createState() => _OrderMedicineState();
 }
 
-class _OrderProductState extends State<OrderProduct> {
+class _OrderMedicineState extends State<OrderMedicine> {
   TextStyle pricingname = GoogleFonts.montserrat(
       color: Color(0xff161616).withOpacity(0.6), fontSize: 14);
   TextStyle price = GoogleFonts.montserrat(
@@ -28,7 +28,7 @@ class _OrderProductState extends State<OrderProduct> {
       ),
       body: ListView(
         children: [
-          ProductList(context),
+          MedicineList(context),
           SizedBox(height: 10),
           PriceDetails(context),
           SizedBox(height: 60),
@@ -70,7 +70,7 @@ class _OrderProductState extends State<OrderProduct> {
     );
   }
 
-  Widget ProductList(context) {
+  Widget MedicineList(context) {
     return Container(
       height: 400,
       child: ListView.builder(
@@ -111,7 +111,7 @@ class _OrderProductState extends State<OrderProduct> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text('Product Name', style: KHeader),
+                                Text('Medicine Name', style: KHeader),
                                 Text(
                                   'Remove',
                                   style: TextStyle(color: Color(0xffD68100)),

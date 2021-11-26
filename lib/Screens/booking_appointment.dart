@@ -389,26 +389,31 @@ class _BookingAppointmentState extends State<BookingAppointment> {
             padding: const EdgeInsets.only(left: 20.0, top: 40),
             child: Align(
               alignment: Alignment.topLeft,
-              child: Container(
-                width: 40,
-                height: 40,
-                child: Center(
-                  child: Icon(
-                    Icons.arrow_back_ios_new,
-                    color: appblueColor,
-                    size: 20,
-                  ),
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(5),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      blurRadius: 10,
-                      offset: const Offset(2, 5),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Container(
+                  width: 40,
+                  height: 40,
+                  child: Center(
+                    child: Icon(
+                      Icons.arrow_back_ios_new,
+                      color: appblueColor,
+                      size: 20,
                     ),
-                  ],
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(5),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        blurRadius: 10,
+                        offset: const Offset(2, 5),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

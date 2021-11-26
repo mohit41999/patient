@@ -31,12 +31,7 @@ class _MyPrescriptionsScreenState extends State<MyPrescriptionsScreen> {
               return Column(
                 children: [
                   GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MyQuestionsScreen()));
-                    },
+                    onTap: () {},
                     child: Card(
                       elevation: 3,
                       child: Padding(

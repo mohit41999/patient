@@ -19,10 +19,7 @@ class ProductPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: GestureDetector(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => DoctorProfile()));
-              },
+              onTap: () {},
               child: Container(
                 height: 40,
                 width: double.infinity,

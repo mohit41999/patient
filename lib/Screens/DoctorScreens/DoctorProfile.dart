@@ -6,6 +6,9 @@ import 'package:patient/Screens/Products.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
 import 'package:patient/Utils/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:patient/controller/NavigationController.dart';
+
+import 'doctor_profile_1.dart';
 
 class DoctorProfile extends StatefulWidget {
   const DoctorProfile({Key? key}) : super(key: key);
@@ -37,10 +40,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: GestureDetector(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => MedicineProfile()));
-              },
+              onTap: () {},
               child: Container(
                 height: 40,
                 width: double.infinity,
@@ -195,7 +195,9 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                         bottomLeft: Radius.circular(15),
                                         bottomRight: Radius.circular(15)),
                                   ))),
-                              onPressed: () {},
+                              onPressed: () {
+                                Push(context, DoctorProfile1());
+                              },
                               child: Text(
                                 'Book An Appointment',
                                 style: GoogleFonts.montserrat(

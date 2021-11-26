@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:patient/Screens/Signup.dart';
+import 'package:patient/Utils/colorsandstyles.dart';
+import 'package:patient/Utils/widgets.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -91,12 +93,17 @@ class _SplashScreenState extends State<SplashScreen> {
                   spreadRadius: 20)
             ]),
             child: Center(
-              child: FlatButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => SignUpPage()));
-                  },
-                  child: Text('SignUp')),
+              child: commonBtn(
+                s: 'SignUp',
+                width: 100,
+                borderRadius: 50,
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SignUpPage()));
+                },
+                textColor: Colors.white,
+                bgcolor: appblueColor,
+              ),
             ),
           )
         ],
