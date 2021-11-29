@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:patient/Screens/DoctorScreens/doctor_profile_1.dart';
-import 'package:patient/Screens/DoctorScreens/DoctorProfile.dart';
+import 'package:patient/Screens/DoctorScreens/doctor_profile.dart';
 import 'package:patient/Screens/LabProfile.dart';
 import 'package:patient/Screens/MedicineProfile.dart';
 import 'package:patient/Screens/Products.dart';
 import 'package:patient/Screens/Signup.dart';
+import 'package:patient/Screens/patient_home_page_4.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
-import 'package:patient/Utils/navigation_drawer.dart';
-import 'package:patient/Utils/widgets.dart';
+import 'package:patient/widgets/commonAppBarLeading.dart';
+import 'package:patient/widgets/navigation_drawer.dart';
+
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:patient/controller/NavigationController.dart';
+import 'package:patient/widgets/common_app_bar_title.dart';
+import 'package:patient/widgets/common_button.dart';
+import 'package:patient/widgets/common_row.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -33,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
     },
     {
       'label': 'Home Care Servicies',
-      'Screen': 'null',
+      'Screen': PatientHomePage4(),
       'profile': 'Rectangle 69.png'
     },
     {
@@ -63,45 +68,19 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        title: commonAppBarTitle(),
-        backgroundColor: appAppBarColor,
-        elevation: 0,
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Builder(
-            builder: (context) => GestureDetector(
-              child: Container(
-                width: 30,
-                height: 30,
-                child: Center(
-                  child: Icon(
-                    Icons.menu,
-                    color: appblueColor,
-                    size: 20,
-                  ),
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(5),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      blurRadius: 10,
-                      offset: const Offset(2, 5),
-                    ),
-                  ],
-                ),
-              ),
-              onTap: () {
-                setState(() {
-                  Scaffold.of(context).openDrawer();
-                });
-              },
-            ),
-          ),
-        ),
-      ),
+          centerTitle: true,
+          title: commonAppBarTitle(),
+          backgroundColor: appAppBarColor,
+          elevation: 0,
+          leading: Builder(
+            builder: (context) => commonAppBarLeading(
+                iconData: Icons.menu,
+                onPressed: () {
+                  setState(() {
+                    Scaffold.of(context).openDrawer();
+                  });
+                }),
+          )),
       drawer: commonDrawer(),
       body: SingleChildScrollView(
         child: Column(
@@ -382,8 +361,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               child: Stack(
                                 children: [
-                                  SvgPicture.asset(
-                                    'assets/images/Icon material-face.svg',
+                                  Image.asset(
+                                    'assets/pngs/Icon material-face.png',
                                     height: double.infinity,
                                     width: double.infinity,
                                   ),
@@ -425,7 +404,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: commonRow(
                       Title: 'Health Checkup at Home',
                       subTitle: 'View all',
-                      value: DoctorProfile,
+                      value: DoctorProfile(),
                     ),
                   ),
                   SizedBox(
@@ -453,8 +432,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               child: Stack(
                                 children: [
-                                  SvgPicture.asset(
-                                    'assets/images/Icon material-face.svg',
+                                  Image.asset(
+                                    'assets/pngs/Icon material-face.png',
                                     height: double.infinity,
                                     width: double.infinity,
                                   ),

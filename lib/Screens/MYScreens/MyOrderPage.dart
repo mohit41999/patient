@@ -2,8 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
-import 'package:patient/Utils/widgets.dart';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:patient/widgets/commonAppBarLeading.dart';
+import 'package:patient/widgets/common_app_bar_title.dart';
+import 'package:patient/widgets/title_column.dart';
 
 class MyOrderPg extends StatefulWidget {
   const MyOrderPg({Key? key}) : super(key: key);
@@ -16,7 +19,18 @@ class _MyOrderPgState extends State<MyOrderPg> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        centerTitle: true,
+        title: commonAppBarTitleText(appbarText: 'My Order'),
+        backgroundColor: appAppBarColor,
+        elevation: 0,
+        leading: Builder(
+            builder: (context) => commonAppBarLeading(
+                iconData: Icons.arrow_back_ios_new,
+                onPressed: () {
+                  Navigator.pop(context);
+                })),
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -51,15 +65,17 @@ class _MyOrderPgState extends State<MyOrderPg> {
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Expanded(
-                                  flex: 1,
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
                                   child: Container(
+                                    alignment: Alignment.center,
+                                    width: 100,
                                     decoration: BoxDecoration(
                                         image: DecorationImage(
                                             image: AssetImage(
-                                              'assets/pngs/Ellipse 651.png',
+                                              'assets/pngs/pngegg (1).png',
                                             ),
-                                            fit: BoxFit.cover)),
+                                            fit: BoxFit.contain)),
                                   ),
                                 ),
                                 Expanded(
@@ -75,8 +91,8 @@ class _MyOrderPgState extends State<MyOrderPg> {
                                         Text(
                                           'Product Name',
                                           style: GoogleFonts.lato(
-                                              fontSize: 12,
-                                              color: Color(0xff252525),
+                                              fontSize: 14,
+                                              color: Colors.black,
                                               fontWeight: FontWeight.bold),
                                         ),
                                         Row(
@@ -94,15 +110,15 @@ class _MyOrderPgState extends State<MyOrderPg> {
                                                         .spaceEvenly,
                                                 children: [
                                                   titleColumn(
-                                                    title: 'Booking Id',
-                                                    value: '9956328',
+                                                    value: '27/09/2021',
+                                                    title: 'Order Date',
                                                   ),
                                                   SizedBox(
                                                     height: 5,
                                                   ),
                                                   titleColumn(
-                                                    value: '27/09/2021',
-                                                    title: 'Date of Booking',
+                                                    title: 'Order Id',
+                                                    value: '9956328',
                                                   ),
                                                 ],
                                               ),

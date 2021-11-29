@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:patient/Screens/DoctorScreens/DoctorProfile.dart';
+import 'package:patient/Screens/DoctorScreens/doctor_profile.dart';
 import 'package:patient/Screens/ProductDetails.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:patient/Utils/widgets.dart';
+
+import 'package:patient/widgets/common_button.dart';
 
 class ProductPage extends StatelessWidget {
   const ProductPage({Key? key}) : super(key: key);
@@ -84,8 +84,8 @@ class ProductPage extends StatelessWidget {
                             flex: 1,
                             child: Container(
                               // color: Colors.purple,
-                              child: SvgPicture.asset(
-                                'assets/images/Icon material-face.svg',
+                              child: Image.asset(
+                                'assets/pngs/Icon material-face.svg',
                                 height: double.infinity,
                               ),
                             ),

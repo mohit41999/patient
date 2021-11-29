@@ -5,10 +5,12 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:patient/Screens/booking_appointment.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
-import 'package:patient/Utils/widgets.dart';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:patient/controller/NavigationController.dart';
+import 'package:patient/widgets/common_button.dart';
+import 'package:patient/widgets/doctor_profile_row.dart';
 
 class BookingAppointment extends StatefulWidget {
   const BookingAppointment({Key? key}) : super(key: key);

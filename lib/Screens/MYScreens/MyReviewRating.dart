@@ -2,6 +2,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
+import 'package:patient/widgets/commonAppBarLeading.dart';
+import 'package:patient/widgets/common_app_bar_title.dart';
 
 class MyReviewRatingsScreen extends StatefulWidget {
   const MyReviewRatingsScreen({Key? key}) : super(key: key);
@@ -16,14 +18,16 @@ class _MyReviewRatingsScreenState extends State<MyReviewRatingsScreen> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
           centerTitle: true,
-          title: Text(
-            'My Reviews & Ratings',
-            style: GoogleFonts.montserrat(
-                color: apptealColor, fontWeight: FontWeight.bold),
-          ),
+          title: commonAppBarTitleText(appbarText: 'My Reviews And Ratings'),
+          backgroundColor: appAppBarColor,
+          elevation: 0,
+          leading: Builder(
+              builder: (context) => commonAppBarLeading(
+                  iconData: Icons.arrow_back_ios_new,
+                  onPressed: () {
+                    Navigator.pop(context);
+                  })),
         ),
         body: ListView.builder(
             itemCount: 5,

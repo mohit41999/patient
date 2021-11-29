@@ -1,8 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:patient/Screens/ProfileSettings/personal_tab.dart';
+import 'package:patient/Utils/colorsandstyles.dart';
+import 'package:patient/widgets/commonAppBarLeading.dart';
+import 'package:patient/widgets/common_app_bar_title.dart';
 
 import 'lifestyle_tab.dart';
 import 'medical_tab.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ProfileSetting extends StatefulWidget {
   @override
@@ -28,24 +33,25 @@ class _ProfileSettingState extends State<ProfileSetting>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: commonAppBarTitleText(appbarText: 'Profile Setting'),
+        backgroundColor: appAppBarColor,
+        elevation: 0,
+        leading: Builder(
+            builder: (context) => commonAppBarLeading(
+                iconData: Icons.arrow_back_ios_new,
+                onPressed: () {
+                  Navigator.pop(context);
+                })),
+      ),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              height: 60,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text('back button'),
-                  SizedBox(width: 60),
-                  Text(
-                    'Profile Setting',
-                  ),
-                ],
-              ),
+            SizedBox(
+              height: 10,
             ),
-            SizedBox(height: 15),
             Container(
               color: Colors.white,
               child: TabBar(

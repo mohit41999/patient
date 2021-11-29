@@ -6,8 +6,10 @@ import 'package:patient/Screens/Home.dart';
 import 'package:patient/Screens/MYScreens/MyPrescriprions.dart';
 import 'package:patient/Screens/Signup.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
-import 'package:patient/Utils/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
+import 'package:patient/widgets/common_app_bar_title.dart';
+import 'package:patient/widgets/common_button.dart';
+import 'package:patient/widgets/enter_field.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -110,11 +112,9 @@ class _SignInScreenState extends State<SignInScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  SvgPicture.asset(
-                      'assets/images/Icon ionic-md-finger-print.svg',
+                  Image.asset('assets/pngs/Icon ionic-md-finger-print.png',
                       height: 90),
-                  SvgPicture.asset('assets/images/Icon material-face.svg',
-                      height: 90),
+                  Image.asset('assets/pngs/Icon material-face.png', height: 90),
                 ],
               ),
               SizedBox(

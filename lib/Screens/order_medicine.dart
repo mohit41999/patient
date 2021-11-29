@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
-import 'package:patient/Utils/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:patient/widgets/common_app_bar_title.dart';
+import 'package:patient/widgets/common_button.dart';
 
 class OrderMedicine extends StatefulWidget {
   const OrderMedicine({Key? key}) : super(key: key);

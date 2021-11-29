@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
-import 'package:patient/Utils/widgets.dart';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:patient/widgets/commonAppBarLeading.dart';
+import 'package:patient/widgets/common_app_bar_title.dart';
+import 'package:patient/widgets/title_column.dart';
 
 import 'MyOrderPage.dart';
 
@@ -17,7 +20,18 @@ class _MyMedicineOrdersState extends State<MyMedicineOrders> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        centerTitle: true,
+        title: commonAppBarTitleText(appbarText: 'My Medicine Orders'),
+        backgroundColor: appAppBarColor,
+        elevation: 0,
+        leading: Builder(
+            builder: (context) => commonAppBarLeading(
+                iconData: Icons.arrow_back_ios_new,
+                onPressed: () {
+                  Navigator.pop(context);
+                })),
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -52,15 +66,18 @@ class _MyMedicineOrdersState extends State<MyMedicineOrders> {
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Expanded(
-                                  flex: 1,
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
                                   child: Container(
+                                    height: 200,
+                                    alignment: Alignment.center,
+                                    width: 100,
                                     decoration: BoxDecoration(
                                         image: DecorationImage(
                                             image: AssetImage(
-                                              'assets/pngs/Ellipse 651.png',
+                                              'assets/pngs/pngegg (1).png',
                                             ),
-                                            fit: BoxFit.cover)),
+                                            fit: BoxFit.contain)),
                                   ),
                                 ),
                                 Expanded(
@@ -178,12 +195,7 @@ class _MyMedicineOrdersState extends State<MyMedicineOrders> {
                                         bottomLeft: Radius.circular(15),
                                         bottomRight: Radius.circular(15)),
                                   ))),
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => MyOrderPg()));
-                              },
+                              onPressed: () {},
                               child: Text(
                                 'Need Help ?',
                                 style: GoogleFonts.montserrat(

@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:patient/Screens/MYScreens/MyLabTest.dart';
 import 'package:patient/Screens/MedicineProfile.dart';
 import 'package:patient/Screens/ProductDetails.dart';
 import 'package:patient/Screens/Products.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
-import 'package:patient/Utils/widgets.dart';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:patient/widgets/commonAppBarLeading.dart';
+import 'package:patient/widgets/common_app_bar_title.dart';
+import 'package:patient/widgets/title_column.dart';
 
 class MyAppointments extends StatefulWidget {
   const MyAppointments({Key? key}) : super(key: key);
@@ -27,7 +30,18 @@ class _MyAppointmentsState extends State<MyAppointments> {
       //   elevation: 20,
       //   splashColor: apptealColor,
       // ),
-      appBar: AppBar(),
+      appBar: AppBar(
+        centerTitle: true,
+        title: commonAppBarTitleText(appbarText: 'My Appointments'),
+        backgroundColor: appAppBarColor,
+        elevation: 0,
+        leading: Builder(
+            builder: (context) => commonAppBarLeading(
+                iconData: Icons.arrow_back_ios_new,
+                onPressed: () {
+                  Navigator.pop(context);
+                })),
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -91,12 +105,12 @@ class _MyAppointmentsState extends State<MyAppointments> {
                                               value: '9956328',
                                             ),
                                             titleColumn(
-                                              value: 'Doctor Name',
-                                              title: 'Lorem ipsum.',
+                                              value: 'Lorem ipsum.',
+                                              title: 'Doctor Name',
                                             ),
                                             titleColumn(
-                                              value: 'Location',
-                                              title: 'Gujarat',
+                                              value: 'Gujarat',
+                                              title: 'Location',
                                             ),
                                           ],
                                         ),
@@ -148,12 +162,7 @@ class _MyAppointmentsState extends State<MyAppointments> {
                                         bottomLeft: Radius.circular(15),
                                         bottomRight: Radius.circular(15)),
                                   ))),
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => MyLabTest()));
-                              },
+                              onPressed: () {},
                               child: Text(
                                 'View Booking Details',
                                 style: GoogleFonts.montserrat(

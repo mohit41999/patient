@@ -1,30 +1,64 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:patient/Screens/DoctorScreens/doctor_profile_3.dart';
+import 'package:patient/Screens/DoctorScreens/doctor_profile_4.dart';
+
 import 'package:patient/Utils/colorsandstyles.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:patient/widgets/common_app_bar_title.dart';
-import 'package:patient/widgets/common_button.dart';
 import 'package:patient/widgets/row_text_icon.dart';
 
-class LabProfile extends StatefulWidget {
-  const LabProfile({Key? key}) : super(key: key);
+class DoctorProfile3 extends StatefulWidget {
+  const DoctorProfile3({Key? key}) : super(key: key);
 
   @override
-  _LabProfileState createState() => _LabProfileState();
+  _DoctorProfile3State createState() => _DoctorProfile3State();
 }
 
-class _LabProfileState extends State<LabProfile> {
+class _DoctorProfile3State extends State<DoctorProfile3> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: commonAppBarTitle(),
-        elevation: 0,
-        backgroundColor: appAppBarColor,
         centerTitle: true,
+        title: commonAppBarTitle(),
+        backgroundColor: appAppBarColor,
+        elevation: 0,
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Builder(
+            builder: (context) => GestureDetector(
+              child: Container(
+                width: 30,
+                height: 30,
+                child: Center(
+                  child: Icon(
+                    Icons.menu,
+                    color: appblueColor,
+                    size: 20,
+                  ),
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(5),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      blurRadius: 10,
+                      offset: const Offset(2, 5),
+                    ),
+                  ],
+                ),
+              ),
+              onTap: () {
+                setState(() {
+                  Scaffold.of(context).openDrawer();
+                });
+              },
+            ),
+          ),
+        ),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -68,18 +102,18 @@ class _LabProfileState extends State<LabProfile> {
               ),
             ),
           ),
-          SizedBox(
-            height: 10,
-          ),
+          // SizedBox(
+          //   height: 10,
+          // ),
           Expanded(
             child: ListView.builder(
                 shrinkWrap: true,
                 itemCount: 10,
                 itemBuilder: (context, int) {
                   return Padding(
-                    padding: const EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: Container(
-                      height: 170,
+                      height: 190,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(15),
@@ -96,7 +130,7 @@ class _LabProfileState extends State<LabProfile> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Container(
-                            height: 170,
+                            height: 150,
                             child: Row(
                               children: [
                                 Expanded(
@@ -106,44 +140,44 @@ class _LabProfileState extends State<LabProfile> {
                                     width: double.infinity,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(15),
-                                            bottomLeft: Radius.circular(15)),
+                                          topLeft: Radius.circular(15),
+                                        ),
                                         image: DecorationImage(
                                             image: AssetImage(
-                                                'assets/pngs/Rectangle-77.png'),
+                                                'assets/pngs/nursedoctor.png'),
                                             fit: BoxFit.cover)),
                                   ),
                                 ),
                                 Expanded(
                                   flex: 2,
                                   child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.all(10.0),
                                     child: Column(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.spaceAround,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text('LAB name', style: KHeader),
-                                        Text(
-                                            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et.',
-                                            style: KBodyText),
-                                        rowTextIcon(
-                                          text: 'Location',
-                                          asset: 'assets/pngs/Group 1182.png',
+                                        Text('Service category',
+                                            style: KHeader),
+                                        Row(
+                                          children: [
+                                            rowTextIcon(
+                                                asset:
+                                                    'assets/pngs/payments_black_24dp (1).png',
+                                                text: 'Starting at'),
+                                            Text(
+                                              '\$199',
+                                              style: GoogleFonts.montserrat(
+                                                  color: apptealColor,
+                                                  fontSize: 13,
+                                                  fontWeight: FontWeight.bold),
+                                            )
+                                          ],
                                         ),
-                                        Center(
-                                          child: commonBtn(
-                                            s: 'View LAB',
-                                            bgcolor: appblueColor,
-                                            textColor: Colors.white,
-                                            onPressed: () {},
-                                            height: 30,
-                                            width: 180,
-                                            textSize: 12,
-                                            borderRadius: 4,
-                                          ),
-                                        )
+                                        Text(
+                                            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
+                                            style: KBodyText),
                                       ],
                                     ),
                                   ),
@@ -151,6 +185,32 @@ class _LabProfileState extends State<LabProfile> {
                               ],
                             ),
                           ),
+                          SizedBox(
+                            height: 40,
+                            width: double.infinity,
+                            child: TextButton(
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          appblueColor),
+                                  shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(15),
+                                        bottomRight: Radius.circular(15)),
+                                  ))),
+                              onPressed: () {},
+                              child: Text(
+                                'Book An Appointment',
+                                style: GoogleFonts.montserrat(
+                                    fontSize: 12,
+                                    color: Colors.white,
+                                    letterSpacing: 1,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          )
                         ],
                       ),
                     ),

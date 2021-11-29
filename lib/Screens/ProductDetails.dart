@@ -6,8 +6,9 @@ import 'package:flutter/painting.dart';
 import 'package:patient/Screens/order_product.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:patient/Utils/widgets.dart';
+
 import 'package:patient/controller/NavigationController.dart';
+import 'package:patient/widgets/common_button.dart';
 
 final Shader linearGradient = LinearGradient(
   colors: <Color>[Color(0xff233E8B), Color(0xff1EAE98)],

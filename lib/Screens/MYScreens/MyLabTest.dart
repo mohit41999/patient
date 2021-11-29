@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:patient/Screens/MYScreens/MyMedicineOrders.dart';
-import 'package:patient/Screens/MedicineProfile.dart';
-import 'package:patient/Screens/ProductDetails.dart';
-import 'package:patient/Screens/Products.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
-import 'package:patient/Utils/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:patient/widgets/commonAppBarLeading.dart';
+import 'package:patient/widgets/common_app_bar_title.dart';
+import 'package:patient/widgets/title_column.dart';
 
 class MyLabTest extends StatefulWidget {
   const MyLabTest({Key? key}) : super(key: key);
@@ -20,7 +17,18 @@ class _MyLabTestState extends State<MyLabTest> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        centerTitle: true,
+        title: commonAppBarTitleText(appbarText: 'My LAB Test'),
+        backgroundColor: appAppBarColor,
+        elevation: 0,
+        leading: Builder(
+            builder: (context) => commonAppBarLeading(
+                iconData: Icons.arrow_back_ios_new,
+                onPressed: () {
+                  Navigator.pop(context);
+                })),
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -54,19 +62,23 @@ class _MyLabTestState extends State<MyLabTest> {
                             height: 130,
                             child: Row(
                               children: [
-                                Expanded(
-                                  flex: 1,
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
                                   child: Container(
+                                    height: 100,
+                                    width: 100,
                                     decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(150),
                                         image: DecorationImage(
                                             image: AssetImage(
-                                              'assets/pngs/Ellipse 651.png',
+                                              'assets/pngs/Rectangle-77.png',
                                             ),
                                             fit: BoxFit.cover)),
                                   ),
                                 ),
                                 Expanded(
-                                  flex: 2,
+                                  // flex: 2,
                                   child: Padding(
                                     padding: const EdgeInsets.all(10.0),
                                     child: Row(
@@ -168,13 +180,7 @@ class _MyLabTestState extends State<MyLabTest> {
                                         bottomLeft: Radius.circular(15),
                                         bottomRight: Radius.circular(15)),
                                   ))),
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            MyMedicineOrders()));
-                              },
+                              onPressed: () {},
                               child: Text(
                                 'Need Help ?',
                                 style: GoogleFonts.montserrat(

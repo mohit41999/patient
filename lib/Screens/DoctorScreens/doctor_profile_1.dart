@@ -2,13 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
+
 import 'package:patient/Screens/booking_appointment.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
-import 'package:patient/Utils/widgets.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:patient/controller/NavigationController.dart';
+import 'package:patient/widgets/common_button.dart';
+import 'package:patient/widgets/doctor_profile_row.dart';
+import 'package:patient/widgets/enter_field.dart';
 
 class DoctorProfile1 extends StatefulWidget {
   const DoctorProfile1({Key? key}) : super(key: key);
