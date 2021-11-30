@@ -20,6 +20,7 @@ class _SignUpPageState extends State<SignUpPage> {
   TextEditingController _controller = TextEditingController();
   bool password = true;
   bool confirmpassword = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

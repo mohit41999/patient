@@ -60,10 +60,10 @@ class _ProfileSettingState extends State<ProfileSetting>
                     TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 indicatorSize: TabBarIndicatorSize.label,
                 indicator: UnderlineTabIndicator(
-                    borderSide: BorderSide(width: 2.0),
+                    borderSide: BorderSide(width: 2.0, color: appblueColor),
                     insets: EdgeInsets.all(-1)),
                 controller: _tabController,
-                labelColor: Colors.black,
+                labelColor: appblueColor,
                 unselectedLabelColor: Colors.grey,
                 tabs: [
                   Tab(

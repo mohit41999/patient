@@ -6,6 +6,10 @@ import 'package:patient/Screens/Home.dart';
 import 'package:patient/Screens/MYScreens/MyPrescriprions.dart';
 import 'package:patient/Screens/Signup.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
+import 'package:patient/controller/NavigationController.dart';
+import 'package:patient/general_screen.dart';
+import 'package:patient/general_screen2.dart';
+import 'package:patient/widgets/bottombar.dart';
 
 import 'package:patient/widgets/common_app_bar_title.dart';
 import 'package:patient/widgets/common_button.dart';
@@ -125,8 +129,8 @@ class _SignInScreenState extends State<SignInScreen> {
                   bgcolor: appblueColor,
                   textColor: Colors.white,
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()));
+                    //Push(context, GeneralScreen2());
+                    Push(context, Bottom());
                   }),
               SizedBox(
                 height: 20,

@@ -9,7 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:patient/widgets/common_button.dart';
 import 'package:patient/widgets/title_enter_field.dart';
 
-import 'MyWalletTabs/wallet_transaction_history.dart';
+import 'wallet_transaction_history.dart';
 
 class MyWalletPage extends StatefulWidget {
   const MyWalletPage({Key? key}) : super(key: key);
