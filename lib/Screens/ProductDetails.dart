@@ -8,7 +8,10 @@ import 'package:patient/Utils/colorsandstyles.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:patient/controller/NavigationController.dart';
+import 'package:patient/widgets/commonAppBarLeading.dart';
+import 'package:patient/widgets/common_app_bar_title.dart';
 import 'package:patient/widgets/common_button.dart';
+import 'package:patient/widgets/navigation_drawer.dart';
 
 final Shader linearGradient = LinearGradient(
   colors: <Color>[Color(0xff233E8B), Color(0xff1EAE98)],
@@ -35,6 +38,21 @@ class _ProductDetailsState extends State<ProductDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          centerTitle: true,
+          title: commonAppBarTitle(),
+          backgroundColor: appAppBarColor,
+          elevation: 0,
+          leading: Builder(
+            builder: (context) => commonAppBarLeading(
+                iconData: Icons.menu,
+                onPressed: () {
+                  setState(() {
+                    Scaffold.of(context).openDrawer();
+                  });
+                }),
+          )),
+      drawer: commonDrawer(),
       body: SafeArea(
         child: Stack(
           children: [
@@ -43,7 +61,7 @@ class _ProductDetailsState extends State<ProductDetails> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AppBar(context),
+                  // AppBar(context),
                   Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Text(
@@ -100,50 +118,50 @@ class _ProductDetailsState extends State<ProductDetails> {
     );
   }
 
-  Widget AppBar(context) {
-    return Padding(
-      padding: const EdgeInsets.all(12.0),
-      child: Container(
-        height: 80,
-        width: double.infinity,
-        child: Row(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    blurRadius: 10,
-                    offset: const Offset(2, 5),
-                  ),
-                ],
-              ),
-              height: 30,
-              width: 30,
-              child: Icon(Icons.segment),
-            ),
-            SizedBox(width: 120),
-            Container(
-              child: ShaderMask(
-                blendMode: BlendMode.srcIn,
-                shaderCallback: (bounds) => LinearGradient(colors: [
-                  Color(0xff233E8B),
-                  Color(0xff1EAE98),
-                ]).createShader(
-                  Rect.fromLTWH(0, 0, bounds.width, bounds.height),
-                ),
-                child: Text(
-                  'DCP',
-                  style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+  // Widget AppBar(context) {
+  //   return Padding(
+  //     padding: const EdgeInsets.all(12.0),
+  //     child: Container(
+  //       height: 80,
+  //       width: double.infinity,
+  //       child: Row(
+  //         children: [
+  //           Container(
+  //             decoration: BoxDecoration(
+  //               color: Colors.white,
+  //               boxShadow: [
+  //                 BoxShadow(
+  //                   color: Colors.grey.withOpacity(0.5),
+  //                   blurRadius: 10,
+  //                   offset: const Offset(2, 5),
+  //                 ),
+  //               ],
+  //             ),
+  //             height: 30,
+  //             width: 30,
+  //             child: Icon(Icons.segment),
+  //           ),
+  //           SizedBox(width: 120),
+  //           Container(
+  //             child: ShaderMask(
+  //               blendMode: BlendMode.srcIn,
+  //               shaderCallback: (bounds) => LinearGradient(colors: [
+  //                 Color(0xff233E8B),
+  //                 Color(0xff1EAE98),
+  //               ]).createShader(
+  //                 Rect.fromLTWH(0, 0, bounds.width, bounds.height),
+  //               ),
+  //               child: Text(
+  //                 'DCP',
+  //                 style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
+  //               ),
+  //             ),
+  //           ),
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
 
   Widget BottomBar(context) {
     return ClipRect(

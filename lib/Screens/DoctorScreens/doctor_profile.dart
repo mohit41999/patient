@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:patient/Screens/filter_screen.dart';
 
 import 'package:patient/Utils/colorsandstyles.dart';
 
@@ -21,12 +22,19 @@ class _DoctorProfileState extends State<DoctorProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(FontAwesomeIcons.filter),
-        backgroundColor: apptealColor,
-        elevation: 20,
-        splashColor: apptealColor,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 80.0),
+        child: FloatingActionButton(
+          onPressed: () {
+            Push(context, FilterScreen());
+          },
+          backgroundColor: apptealColor,
+          child: Icon(
+            FontAwesomeIcons.filter,
+            color: Colors.white,
+          ),
+        ),
       ),
       appBar: AppBar(
         title: commonAppBarTitle(),
@@ -83,9 +91,12 @@ class _DoctorProfileState extends State<DoctorProfile> {
             child: ListView.builder(
                 shrinkWrap: true,
                 itemCount: 10,
-                itemBuilder: (context, int) {
+                itemBuilder: (context, index) {
                   return Padding(
-                    padding: const EdgeInsets.all(10.0),
+                    padding: (index + 1 == 10)
+                        ? EdgeInsets.only(
+                            left: 10, right: 10, bottom: 50, top: 10)
+                        : const EdgeInsets.all(10.0),
                     child: Container(
                       height: 190,
                       decoration: BoxDecoration(
@@ -213,7 +224,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                     ),
                   );
                 }),
-          )
+          ),
         ],
       ),
     );

@@ -16,6 +16,7 @@ import 'package:patient/controller/NavigationController.dart';
 import 'package:patient/widgets/common_app_bar_title.dart';
 import 'package:patient/widgets/common_button.dart';
 import 'package:patient/widgets/common_row.dart';
+import 'package:patient/widgets/patient_home_page_4_alert_box.dart';
 
 class PatientHomePage4 extends StatefulWidget {
   const PatientHomePage4({Key? key}) : super(key: key);
@@ -169,7 +170,8 @@ class _PatientHomePage4State extends State<PatientHomePage4> {
                                     bgcolor: appblueColor,
                                     textColor: Colors.white,
                                     onPressed: () {
-                                      Push(context, DoctorProfile1());
+                                      // Push(context, DoctorProfile1());
+                                      patientpg4alertbox(context, _search);
                                     },
                                     width: 120,
                                     height: 30,

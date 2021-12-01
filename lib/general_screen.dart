@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:patient/Screens/Home.dart';
+import 'package:patient/controller/NavigationController.dart';
+import 'package:patient/search_screen.dart';
 import 'package:patient/widgets/bottombar.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,19 +12,19 @@ import 'Screens/LabProfile.dart';
 import 'Screens/MedicineProfile.dart';
 import 'Utils/colorsandstyles.dart';
 
-class Bottom extends StatefulWidget {
-  const Bottom({Key? key}) : super(key: key);
+class GeneralScreen extends StatefulWidget {
+  const GeneralScreen({Key? key}) : super(key: key);
 
   @override
-  State<Bottom> createState() => _BottomState();
+  State<GeneralScreen> createState() => _GeneralScreenState();
 }
 
-class _BottomState extends State<Bottom> {
+class _GeneralScreenState extends State<GeneralScreen> {
   List<Widget> _buildScreens() {
     return [
       HomeScreen(),
       DoctorProfile(),
-      HomeScreen(),
+      // HomeScreen(),
       MedicineProfile(),
       LabProfile()
     ];
@@ -43,10 +45,11 @@ class _BottomState extends State<Bottom> {
       ),
       bottomNavigationBar: ClipRRect(
         child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
+          filter: ImageFilter.blur(sigmaX: 8.0, sigmaY: 8.0),
           child: Container(
             height: 70,
-            color: Colors.white.withOpacity(0.5),
+            decoration:
+                BoxDecoration(color: Colors.grey.shade200.withOpacity(0.5)),
             width: MediaQuery.of(context).size.width,
             child: FABBottomAppBar(
               centerItemText: 'Search',
@@ -107,16 +110,19 @@ class _BottomState extends State<Bottom> {
             clipBehavior: Clip.antiAlias,
             // clipBehavior: Clip.hardEdge,
             child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+              filter: ImageFilter.blur(sigmaX: 8.0, sigmaY: 8.0),
               child: Container(
                 decoration: BoxDecoration(
-                    border: Border.all(color: Colors.white, width: 2),
-                    borderRadius: BorderRadius.circular(100),
-                    color: Colors.white.withOpacity(0.3)),
+                  color: Colors.grey.shade200.withOpacity(0.5),
+                  border: Border.all(color: Colors.white, width: 2),
+                  borderRadius: BorderRadius.circular(100),
+                ),
                 child: FloatingActionButton(
                   //isExtended: true,
                   backgroundColor: Colors.transparent,
-                  onPressed: () {},
+                  onPressed: () {
+                    Push(context, SearchScreen());
+                  },
                   child: Icon(
                     Icons.search,
                     size: 40,

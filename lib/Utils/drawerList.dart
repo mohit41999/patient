@@ -9,6 +9,7 @@ import 'package:patient/Screens/MYScreens/MyReviewRating.dart';
 import 'package:patient/Screens/MYScreens/MyWalletTabs/my_wallet_pg.dart';
 import 'package:patient/Screens/ProfileSettings/profile_setting.dart';
 import 'package:patient/Screens/account_settings.dart';
+import 'package:patient/Screens/chats_screen.dart';
 
 List<Map<dynamic, dynamic>> drawerList = [
   {
@@ -21,7 +22,7 @@ List<Map<dynamic, dynamic>> drawerList = [
   },
   {
     'label': 'My Chats',
-    'Screen': 'null',
+    'Screen': ChatsScrren(),
   },
   {
     'label': 'My Lab Test',

@@ -8,7 +8,6 @@ import 'package:patient/Screens/Signup.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
 import 'package:patient/controller/NavigationController.dart';
 import 'package:patient/general_screen.dart';
-import 'package:patient/general_screen2.dart';
 import 'package:patient/widgets/bottombar.dart';
 
 import 'package:patient/widgets/common_app_bar_title.dart';
@@ -130,7 +129,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   textColor: Colors.white,
                   onPressed: () {
                     //Push(context, GeneralScreen2());
-                    Push(context, Bottom());
+                    Push(context, GeneralScreen());
                   }),
               SizedBox(
                 height: 20,

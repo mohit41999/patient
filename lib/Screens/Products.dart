@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:patient/Screens/DoctorScreens/doctor_profile.dart';
 import 'package:patient/Screens/ProductDetails.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
+import 'package:patient/widgets/commonAppBarLeading.dart';
+import 'package:patient/widgets/common_app_bar_title.dart';
 
 import 'package:patient/widgets/common_button.dart';
 
@@ -12,7 +14,18 @@ class ProductPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: commonAppBarTitleText(appbarText: 'Products'),
+        elevation: 0,
+        backgroundColor: appAppBarColor,
+        centerTitle: true,
+        leading: Builder(
+            builder: (context) => commonAppBarLeading(
+                iconData: Icons.arrow_back_ios_new,
+                onPressed: () {
+                  Navigator.pop(context);
+                })),
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [

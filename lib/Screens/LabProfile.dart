@@ -5,6 +5,7 @@ import 'package:patient/Screens/DoctorScreens/doctor_profile_3.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:patient/widgets/commonAppBarLeading.dart';
 import 'package:patient/widgets/common_app_bar_title.dart';
 import 'package:patient/widgets/common_button.dart';
 import 'package:patient/widgets/row_text_icon.dart';
@@ -21,10 +22,16 @@ class _LabProfileState extends State<LabProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: commonAppBarTitle(),
+        title: commonAppBarTitleText(appbarText: 'Lab Profile'),
         elevation: 0,
         backgroundColor: appAppBarColor,
         centerTitle: true,
+        leading: Builder(
+            builder: (context) => commonAppBarLeading(
+                iconData: Icons.arrow_back_ios_new,
+                onPressed: () {
+                  Navigator.pop(context);
+                })),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -75,9 +82,12 @@ class _LabProfileState extends State<LabProfile> {
             child: ListView.builder(
                 shrinkWrap: true,
                 itemCount: 10,
-                itemBuilder: (context, int) {
+                itemBuilder: (context, index) {
                   return Padding(
-                    padding: const EdgeInsets.all(10.0),
+                    padding: (index + 1 == 10)
+                        ? EdgeInsets.only(
+                            left: 10, right: 10, bottom: 50, top: 10)
+                        : const EdgeInsets.all(10.0),
                     child: Container(
                       height: 170,
                       decoration: BoxDecoration(
@@ -156,7 +166,7 @@ class _LabProfileState extends State<LabProfile> {
                     ),
                   );
                 }),
-          )
+          ),
         ],
       ),
     );

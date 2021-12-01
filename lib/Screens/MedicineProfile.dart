@@ -22,7 +22,7 @@ class _MedicineProfileState extends State<MedicineProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: commonAppBarTitle(),
+        title: commonAppBarTitleText(appbarText: 'Medicine Profile'),
         centerTitle: true,
         elevation: 0,
         backgroundColor: appAppBarColor,
@@ -76,9 +76,12 @@ class _MedicineProfileState extends State<MedicineProfile> {
             child: ListView.builder(
                 shrinkWrap: true,
                 itemCount: 10,
-                itemBuilder: (context, int) {
+                itemBuilder: (context, index) {
                   return Padding(
-                    padding: const EdgeInsets.all(10.0),
+                    padding: (index + 1 == 10)
+                        ? EdgeInsets.only(
+                            left: 10, right: 10, bottom: 50, top: 10)
+                        : const EdgeInsets.all(10.0),
                     child: Container(
                       height: 170,
                       decoration: BoxDecoration(
@@ -166,7 +169,7 @@ class _MedicineProfileState extends State<MedicineProfile> {
                     ),
                   );
                 }),
-          )
+          ),
         ],
       ),
     );

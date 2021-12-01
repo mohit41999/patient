@@ -7,6 +7,7 @@ import 'package:patient/controller/NavigationController.dart';
 class TitleEnterField extends StatelessWidget {
   final String hintText;
   final String outsideText;
+  // final double height;
   // final String labelText;
   TextInputType textInputType;
   //final int maxLength;
@@ -46,7 +47,7 @@ class TitleEnterField extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4.0),
             child: ConstrainedBox(
-              constraints: const BoxConstraints(minHeight: 40, maxHeight: 150),
+              constraints: const BoxConstraints(minHeight: 10, maxHeight: 50),
               child: Material(
                 elevation: 5,
                 borderRadius: BorderRadius.circular(10),

@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:patient/widgets/commonAppBarLeading.dart';
 import 'package:patient/widgets/common_app_bar_title.dart';
 import 'package:patient/widgets/common_button.dart';
+import 'package:patient/widgets/navigation_drawer.dart';
 
 class OrderProduct extends StatefulWidget {
   const OrderProduct({Key? key}) : super(key: key);
@@ -23,11 +25,20 @@ class _OrderProductState extends State<OrderProduct> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: commonAppBarTitle(),
-        centerTitle: true,
-        backgroundColor: appAppBarColor,
-        elevation: 0,
-      ),
+          centerTitle: true,
+          title: commonAppBarTitle(),
+          backgroundColor: appAppBarColor,
+          elevation: 0,
+          leading: Builder(
+            builder: (context) => commonAppBarLeading(
+                iconData: Icons.menu,
+                onPressed: () {
+                  setState(() {
+                    Scaffold.of(context).openDrawer();
+                  });
+                }),
+          )),
+      drawer: commonDrawer(),
       body: ListView(
         children: [
           ProductList(context),
