@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
+import 'package:patient/controller/ProfileSettingController/medical_setting_controller.dart';
 import 'package:patient/widgets/common_button.dart';
 import 'package:patient/widgets/title_enter_field.dart';
 
@@ -11,7 +12,7 @@ class Medical extends StatefulWidget {
 }
 
 class _MedicalState extends State<Medical> {
-  TextEditingController _firstname = TextEditingController();
+  MedicalSettingController _con = MedicalSettingController();
 
   @override
   Widget build(BuildContext context) {
@@ -22,25 +23,25 @@ class _MedicalState extends State<Medical> {
           TitleEnterField(
             'Details of allergies',
             'Details of allergies',
-            _firstname,
+            _con.details_of_allergies,
             maxLines: 10,
           ),
           TitleEnterField(
             'Current & Past Medications',
             'Current & Past Medications',
-            _firstname,
+            _con.current_and_past_medication,
             maxLines: 10,
           ),
           TitleEnterField(
             'Past surgery or injury',
             'Past surgery or injury',
-            _firstname,
+            _con.past_surgery_injury,
             maxLines: 10,
           ),
           TitleEnterField(
             'Any chronic disease',
             'Any chronic disease',
-            _firstname,
+            _con.chronic_disease,
             maxLines: 10,
           ),
           const SizedBox(
@@ -52,7 +53,11 @@ class _MedicalState extends State<Medical> {
               s: 'Submit',
               bgcolor: appblueColor,
               textColor: Colors.white,
-              onPressed: () {},
+              onPressed: () {
+                setState(() {
+                  _con.submit(context);
+                });
+              },
               borderRadius: 8,
               textSize: 20,
             ),

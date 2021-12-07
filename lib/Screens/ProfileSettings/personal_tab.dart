@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
+import 'package:patient/controller/ProfileSettingController/personal_setting_controller.dart';
 import 'package:patient/widgets/common_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:patient/widgets/title_enter_field.dart';
@@ -12,8 +13,7 @@ class Personal extends StatefulWidget {
 }
 
 class _PersonalState extends State<Personal> {
-  TextEditingController _firstname = TextEditingController();
-
+  PersonalSettingController _con = PersonalSettingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,23 +22,24 @@ class _PersonalState extends State<Personal> {
         padding: const EdgeInsets.all(8.0),
         child: ListView(
           children: [
-            TitleEnterField('Firstname', 'Firstname', _firstname),
-            TitleEnterField('Lastname', 'Lastname', _firstname),
-            TitleEnterField('Email id', 'Email id', _firstname),
-            TitleEnterField('Contact Number', 'Contact Number', _firstname),
-            TitleEnterField('Age', 'Age', _firstname),
-            TitleEnterField('Gender', 'Gender', _firstname),
-            TitleEnterField('DOB', 'DOB', _firstname),
-            TitleEnterField('Blood Group', 'Blood Group', _firstname),
-            TitleEnterField('Marital status', 'Marital status', _firstname),
-            TitleEnterField('Height', 'Height', _firstname),
-            TitleEnterField('Weight', 'Weight', _firstname),
+            TitleEnterField('Firstname', 'Firstname', _con.firstname),
+            TitleEnterField('Lastname', 'Lastname', _con.lastname),
+            TitleEnterField('Email id', 'Email id', _con.email),
+            TitleEnterField('Contact Number', 'Contact Number', _con.contactno),
+            TitleEnterField('Age', 'Age', _con.age),
+            TitleEnterField('Gender', 'Gender', _con.gender),
+            TitleEnterField('DOB', 'DOB', _con.DOB),
+            TitleEnterField('Blood Group', 'Blood Group', _con.bloodGroup),
             TitleEnterField(
-                'Emergency contact', 'Emergency contact', _firstname),
+                'Marital status', 'Marital status', _con.maritalStatus),
+            TitleEnterField('Height', 'Height', _con.height),
+            TitleEnterField('Weight', 'Weight', _con.weight),
+            TitleEnterField('Emergency contact', 'Emergency contact',
+                _con.emergencycontact),
             TitleEnterField(
               'Address',
               'Address',
-              _firstname,
+              _con.address,
               maxLines: 10,
             ),
             Padding(
@@ -95,7 +96,11 @@ class _PersonalState extends State<Personal> {
                 s: 'Submit',
                 bgcolor: appblueColor,
                 textColor: Colors.white,
-                onPressed: () {},
+                onPressed: () {
+                  setState(() {
+                    _con.submit(context);
+                  });
+                },
                 borderRadius: 8,
                 textSize: 20,
               ),

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:patient/Screens/MYScreens/MyAppointments.dart';
+import 'package:patient/Screens/filter_screen.dart';
 
 import 'package:patient/Utils/colorsandstyles.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:patient/controller/NavigationController.dart';
 import 'package:patient/widgets/common_app_bar_title.dart';
+import 'package:patient/widgets/patient_home_page_4_alert_box.dart';
 import 'package:patient/widgets/row_text_icon.dart';
 
 class DoctorProfile4 extends StatefulWidget {
@@ -16,11 +19,14 @@ class DoctorProfile4 extends StatefulWidget {
 }
 
 class _DoctorProfile4State extends State<DoctorProfile4> {
+  TextEditingController _controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Push(context, FilterScreen());
+        },
         child: const Icon(FontAwesomeIcons.filter),
         backgroundColor: apptealColor,
         elevation: 20,
@@ -242,7 +248,9 @@ class _DoctorProfile4State extends State<DoctorProfile4> {
                                         bottomLeft: Radius.circular(15),
                                         bottomRight: Radius.circular(15)),
                                   ))),
-                              onPressed: () {},
+                              onPressed: () {
+                                patientpg4alertbox(context, _controller);
+                              },
                               child: Text(
                                 'Book An Appointment',
                                 style: GoogleFonts.montserrat(

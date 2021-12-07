@@ -1,13 +1,17 @@
+import 'package:patient/controller/NavigationController.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:patient/Screens/SignInScreen.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:patient/controller/sign_up_controller.dart';
 import 'package:patient/widgets/common_app_bar_title.dart';
 import 'package:patient/widgets/common_button.dart';
 import 'package:patient/widgets/enter_field.dart';
+import 'package:country_code_picker/country_code_picker.dart';
+
+import 'SignInScreen.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -17,7 +21,7 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  TextEditingController _controller = TextEditingController();
+  SignUpController _con = SignUpController();
   bool password = true;
   bool confirmpassword = true;
 
@@ -59,7 +63,7 @@ class _SignUpPageState extends State<SignUpPage> {
               EnterField(
                 'Firstname',
                 'Firstname',
-                _controller,
+                _con.firstname,
               ),
               SizedBox(
                 height: 20,
@@ -67,23 +71,57 @@ class _SignUpPageState extends State<SignUpPage> {
               EnterField(
                 'Lastname',
                 'Lastname ',
-                _controller,
+                _con.lastname,
               ),
               SizedBox(
                 height: 20,
               ),
-              EnterField('Email ID', 'Email ID', _controller),
+              EnterField('Email ID', 'Email ID', _con.email_Id),
               SizedBox(
                 height: 20,
               ),
-              EnterField('Mobile Number', 'Mobile Number', _controller),
+              Row(
+                children: [
+                  Material(
+                    elevation: 5,
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                    child: CountryCodePicker(
+                      onChanged: (v) {
+                        print(v.toString());
+                        _con.countrycode = v.dialCode.toString();
+                        print(_con.countrycode);
+                      },
+                      // Initial selection and favorite can be one of code ('IT') OR dial_code('+39')
+                      initialSelection: 'IN',
+                      favorite: ['+91', 'IN'],
+                      // optional. Shows only country name and flag
+                      showCountryOnly: false,
+                      showFlagDialog: true,
+                      showFlag: false,
+                      // optional. Shows only country name and flag when popup is closed.
+                      showOnlyCountryWhenClosed: false,
+                      // optional. aligns the flag and the Text left
+                      alignLeft: false,
+                      textStyle: GoogleFonts.montserrat(
+                          fontSize: 14, color: Colors.black.withOpacity(0.6)),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                      child: EnterField('Mobile Number', 'Mobile Number',
+                          _con.mobile_number)),
+                ],
+              ),
               SizedBox(
                 height: 20,
               ),
               EnterField(
                 'Password',
                 'Password',
-                _controller,
+                _con.password,
                 obscure: password,
                 widget: IconButton(
                     onPressed: () {
@@ -101,7 +139,7 @@ class _SignUpPageState extends State<SignUpPage> {
               EnterField(
                 'Confirm Password',
                 'Confirm Password',
-                _controller,
+                _con.confirmpassword,
                 obscure: confirmpassword,
                 widget: IconButton(
                     onPressed: () {
@@ -123,10 +161,8 @@ class _SignUpPageState extends State<SignUpPage> {
                   bgcolor: appblueColor,
                   textColor: Colors.white,
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => SignInScreen()));
+                    // _con.Signup(context);
+                    Push(context, SignInScreen());
                   })
             ],
           ),

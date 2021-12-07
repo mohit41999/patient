@@ -47,7 +47,7 @@ class TitleEnterField extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4.0),
             child: ConstrainedBox(
-              constraints: const BoxConstraints(minHeight: 10, maxHeight: 50),
+              constraints: const BoxConstraints(minHeight: 10, maxHeight: 150),
               child: Material(
                 elevation: 5,
                 borderRadius: BorderRadius.circular(10),

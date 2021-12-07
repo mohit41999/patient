@@ -7,6 +7,7 @@ import 'package:patient/Screens/MYScreens/MyPrescriprions.dart';
 import 'package:patient/Screens/Signup.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
 import 'package:patient/controller/NavigationController.dart';
+import 'package:patient/controller/sign_in_controller.dart';
 import 'package:patient/general_screen.dart';
 import 'package:patient/widgets/bottombar.dart';
 
@@ -22,8 +23,7 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  TextEditingController _emailcontroller = TextEditingController();
-  TextEditingController _passwordcontroller = TextEditingController();
+  SignInController _controller = SignInController();
   bool password = true;
   @override
   Widget build(BuildContext context) {
@@ -60,14 +60,14 @@ class _SignInScreenState extends State<SignInScreen> {
               SizedBox(
                 height: 30,
               ),
-              EnterField('Email ID', 'Email ID', _emailcontroller),
+              EnterField('Email ID', 'Email ID', _controller.email),
               SizedBox(
                 height: 20,
               ),
               EnterField(
                 'Password',
                 'Password',
-                _passwordcontroller,
+                _controller.password,
                 obscure: password,
                 widget: IconButton(
                     onPressed: () {
@@ -128,8 +128,9 @@ class _SignInScreenState extends State<SignInScreen> {
                   bgcolor: appblueColor,
                   textColor: Colors.white,
                   onPressed: () {
+                    _controller.SignIn(context);
                     //Push(context, GeneralScreen2());
-                    Push(context, GeneralScreen());
+                    // Push(context, GeneralScreen());
                   }),
               SizedBox(
                 height: 20,

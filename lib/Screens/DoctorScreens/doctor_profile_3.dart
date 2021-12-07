@@ -6,7 +6,9 @@ import 'package:patient/Screens/DoctorScreens/doctor_profile_4.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:patient/controller/NavigationController.dart';
 import 'package:patient/widgets/common_app_bar_title.dart';
+import 'package:patient/widgets/navigation_drawer.dart';
 import 'package:patient/widgets/row_text_icon.dart';
 
 class DoctorProfile3 extends StatefulWidget {
@@ -60,6 +62,7 @@ class _DoctorProfile3State extends State<DoctorProfile3> {
           ),
         ),
       ),
+      drawer: commonDrawer(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -200,7 +203,9 @@ class _DoctorProfile3State extends State<DoctorProfile3> {
                                         bottomLeft: Radius.circular(15),
                                         bottomRight: Radius.circular(15)),
                                   ))),
-                              onPressed: () {},
+                              onPressed: () {
+                                Push(context, DoctorProfile4());
+                              },
                               child: Text(
                                 'Book An Appointment',
                                 style: GoogleFonts.montserrat(
