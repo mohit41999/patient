@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:patient/Models/home_doctor_speciality_model.dart';
 import 'package:patient/Screens/DoctorScreens/doctor_profile_1.dart';
 import 'package:patient/Screens/DoctorScreens/doctor_profile.dart';
 import 'package:patient/Screens/LabProfile.dart';
@@ -7,6 +8,7 @@ import 'package:patient/Screens/Products.dart';
 import 'package:patient/Screens/Signup.dart';
 import 'package:patient/Screens/patient_home_page_4.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
+import 'package:patient/controller/home_controller.dart';
 import 'package:patient/widgets/commonAppBarLeading.dart';
 import 'package:patient/widgets/navigation_drawer.dart';
 
@@ -25,6 +27,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  HomeController _con = HomeController();
+  late HomeDoctorSpecialityModel specialities;
+
   List<Map<dynamic, dynamic>> hometile = [
     {
       'label': 'Doctor Consultaion',
@@ -64,6 +69,25 @@ class _HomeScreenState extends State<HomeScreen> {
     },
   ];
   TextEditingController _search = TextEditingController();
+
+  void initialize() {
+    _con.getDoctorSpecilities().then((value) {
+      setState(() {
+        specialities = value;
+        _con.specialitybool = false;
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    initialize();
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -290,33 +314,39 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   Container(
                     height: 150,
-                    child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: 5,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: GestureDetector(
-                              onTap: () {
-                                Push(context, DoctorProfile());
-                              },
-                              child: Column(
-                                children: [
-                                  CircleAvatar(
-                                    radius: 50,
+                    child: (_con.specialitybool)
+                        ? CircularProgressIndicator()
+                        : ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: specialities.data.length,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Push(context, DoctorProfile());
+                                  },
+                                  child: Column(
+                                    children: [
+                                      CircleAvatar(
+                                        backgroundImage: NetworkImage(
+                                            specialities
+                                                .data[index].specialistImg),
+                                        radius: 50,
+                                      ),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      Text(
+                                        specialities.data[index].specialistName,
+                                        style: GoogleFonts.montserrat(
+                                            fontSize: 11),
+                                      ),
+                                    ],
                                   ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(
-                                    'Type',
-                                    style: GoogleFonts.montserrat(fontSize: 11),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        }),
+                                ),
+                              );
+                            }),
                   ),
                 ],
               ),

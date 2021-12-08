@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
+import 'package:patient/controller/account_setting.dart';
 import 'package:patient/widgets/commonAppBarLeading.dart';
 import 'package:patient/widgets/common_app_bar_title.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,8 +16,7 @@ class AccountSetting extends StatefulWidget {
 }
 
 class _AccountSettingState extends State<AccountSetting> {
-  TextEditingController oldPass = TextEditingController();
-  TextEditingController newPass = TextEditingController();
+  AccountSettingController _con = AccountSettingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,8 +40,10 @@ class _AccountSettingState extends State<AccountSetting> {
               SizedBox(
                 height: 15,
               ),
-              TitleEnterField('Enter Old Password', 'Change Password', oldPass),
-              TitleEnterField('Enter New Password', 'New Password', newPass),
+              TitleEnterField(
+                  'Enter Old Password', 'Change Password', _con.old_password),
+              TitleEnterField(
+                  'Enter New Password', 'New Password', _con.new_password),
               TextButton(
                   onPressed: () {},
                   child: Text(
@@ -59,7 +61,9 @@ class _AccountSettingState extends State<AccountSetting> {
                 s: 'Submit  ',
                 bgcolor: appblueColor,
                 textColor: Colors.white,
-                onPressed: () {},
+                onPressed: () {
+                  _con.changesPassword(context);
+                },
                 borderRadius: 8,
               ),
             ),

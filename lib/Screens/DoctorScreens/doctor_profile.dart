@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:patient/Models/doctor_profile_model.dart';
 import 'package:patient/Screens/filter_screen.dart';
 
 import 'package:patient/Utils/colorsandstyles.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:patient/controller/NavigationController.dart';
+import 'package:patient/controller/doctor_controller.dart';
 import 'package:patient/widgets/common_app_bar_title.dart';
 import 'package:patient/widgets/row_text_icon.dart';
 
@@ -19,6 +21,20 @@ class DoctorProfile extends StatefulWidget {
 }
 
 class _DoctorProfileState extends State<DoctorProfile> {
+  DoctorController _con = DoctorController();
+  late DoctorProfileModel _doctordata;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    _con.getDoctor(context).then((value) {
+      setState(() {
+        _doctordata = value;
+      });
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,8 +106,9 @@ class _DoctorProfileState extends State<DoctorProfile> {
           Expanded(
             child: ListView.builder(
                 shrinkWrap: true,
-                itemCount: 10,
+                itemCount: _doctordata.data.length,
                 itemBuilder: (context, index) {
+                  var Docs = _doctordata.data[index];
                   return Padding(
                     padding: (index + 1 == 10)
                         ? EdgeInsets.only(
@@ -123,6 +140,8 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                 Expanded(
                                   flex: 1,
                                   child: CircleAvatar(
+                                    backgroundImage:
+                                        NetworkImage(Docs.profileImage),
                                     radius: 50,
                                   ),
                                 ),
@@ -136,7 +155,11 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text('Dr. Daksh Kumar', style: KHeader),
+                                        Text(
+                                            Docs.firstName.toString() +
+                                                ' ' +
+                                                Docs.lastName.toString(),
+                                            style: KHeader),
                                         Text('Hair Transplat Surgeon',
                                             style: GoogleFonts.montserrat(
                                                 color: Colors.black,

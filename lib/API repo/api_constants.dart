@@ -21,6 +21,7 @@ Future PostData({required String PARAM_URL, required Map params}) async {
   var response = await http.post(Uri.parse(BASE_URL + PARAM_URL), body: params);
   print(response.body);
   var Response = jsonDecode(response.body);
+  print('----------->' + Response.toString());
   return Response;
 }
 

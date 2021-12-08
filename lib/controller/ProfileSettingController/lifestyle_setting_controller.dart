@@ -17,7 +17,7 @@ class LifestyleSettingController {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? user_id = prefs.getString('user_id');
     print(user_id);
-    PostData(PARAM_URL: 'update_patient_lifestyle.php', params: {
+    var response = PostData(PARAM_URL: 'update_patient_lifestyle.php', params: {
       'token': Token,
       'user_id': user_id.toString(),
       'smoking': SmokingdropdownValue.toString(),
@@ -35,5 +35,6 @@ class LifestyleSettingController {
               duration: Duration(seconds: 2),
             ));
     });
+    // print(response.toString() + '===============>');
   }
 }

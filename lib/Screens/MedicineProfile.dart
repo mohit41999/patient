@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:patient/Models/medicine_profile_model.dart';
 
 import 'package:patient/Screens/LabProfile.dart';
 import 'package:patient/Screens/order_medicine.dart';
@@ -7,6 +8,7 @@ import 'package:patient/Utils/colorsandstyles.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:patient/controller/NavigationController.dart';
+import 'package:patient/controller/medicine_controller.dart';
 import 'package:patient/widgets/common_app_bar_title.dart';
 import 'package:patient/widgets/common_button.dart';
 
@@ -18,6 +20,20 @@ class MedicineProfile extends StatefulWidget {
 }
 
 class _MedicineProfileState extends State<MedicineProfile> {
+  late MedicineProfileModel medicinedata;
+  MedicineProfileController _con = MedicineProfileController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    _con.getMedicines(context).then((value) {
+      setState(() {
+        medicinedata = value;
+      });
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,7 +91,7 @@ class _MedicineProfileState extends State<MedicineProfile> {
           Expanded(
             child: ListView.builder(
                 shrinkWrap: true,
-                itemCount: 10,
+                itemCount: medicinedata.data.length,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: (index + 1 == 10)
@@ -107,8 +123,8 @@ class _MedicineProfileState extends State<MedicineProfile> {
                               children: [
                                 Expanded(
                                   flex: 1,
-                                  child:
-                                      Image.asset('assets/pngs/pngegg (1).png'),
+                                  child: Image.network(
+                                      medicinedata.data[index].medicineImage),
                                 ),
                                 Expanded(
                                   flex: 2,
@@ -120,9 +136,13 @@ class _MedicineProfileState extends State<MedicineProfile> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text('Medicines name', style: KHeader),
                                         Text(
-                                            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et.',
+                                            medicinedata
+                                                .data[index].medicinesName,
+                                            style: KHeader),
+                                        Text(
+                                            medicinedata
+                                                .data[index].description,
                                             style: KBodyText),
                                       ],
                                     ),
@@ -141,7 +161,7 @@ class _MedicineProfileState extends State<MedicineProfile> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    '\$199',
+                                    '\$${medicinedata.data[index].price}',
                                     style: TextStyle(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 18),
