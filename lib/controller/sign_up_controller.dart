@@ -27,6 +27,7 @@ class SignUpController {
       'first_name': firstname.text,
       'last_name': lastname.text,
       'email': email_Id.text,
+      'country_code': countrycode,
       'mobile_no': mobile_number.text,
       'password': password.text,
       'confirm_password': confirmpassword.text,

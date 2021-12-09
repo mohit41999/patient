@@ -1,15 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:patient/Models/products_model.dart';
 import 'package:patient/Screens/DoctorScreens/doctor_profile.dart';
 import 'package:patient/Screens/ProductDetails.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
+import 'package:patient/controller/product_controller.dart';
 import 'package:patient/widgets/commonAppBarLeading.dart';
 import 'package:patient/widgets/common_app_bar_title.dart';
-
+import 'package:flutter_html/flutter_html.dart';
 import 'package:patient/widgets/common_button.dart';
 
-class ProductPage extends StatelessWidget {
+class ProductPage extends StatefulWidget {
   const ProductPage({Key? key}) : super(key: key);
+
+  @override
+  State<ProductPage> createState() => _ProductPageState();
+}
+
+class _ProductPageState extends State<ProductPage> {
+  ProductController _con = ProductController();
+  late ProductModel products;
+
+  @override
+  void initState() {
+    _con.getProducts(context).then((value) {
+      setState(() {
+        products = value;
+      });
+    });
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,8 +95,9 @@ class ProductPage extends StatelessWidget {
           Expanded(
             child: ListView.builder(
                 shrinkWrap: true,
-                itemCount: 10,
-                itemBuilder: (context, int) {
+                itemCount: products.data.length,
+                itemBuilder: (context, int index) {
+                  var Product = products.data[index];
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
@@ -98,7 +120,7 @@ class ProductPage extends StatelessWidget {
                             child: Container(
                               // color: Colors.purple,
                               child: Image.asset(
-                                'assets/pngs/Icon material-face.svg',
+                                'assets/pngs/Icon material-face.png',
                                 height: double.infinity,
                               ),
                             ),
@@ -112,11 +134,10 @@ class ProductPage extends StatelessWidget {
                                     MainAxisAlignment.spaceAround,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text('Product Name', style: KHeader),
+                                  Text(Product.productName, style: KHeader),
                                   Container(
-                                    child: Text(
-                                      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut laborecn et.',
-                                      style: KBodyText,
+                                    child: Html(
+                                      data: Product.productDetails,
                                     ),
                                   ),
                                   Row(
@@ -124,7 +145,7 @@ class ProductPage extends StatelessWidget {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        '\$199',
+                                        '\$${Product.productPrice}',
                                         style: TextStyle(
                                             fontWeight: FontWeight.w500,
                                             fontSize: 18),

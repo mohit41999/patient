@@ -1,8 +1,10 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:patient/Screens/SignInScreen.dart';
 import 'package:patient/Screens/Signup.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
+import 'package:patient/controller/NavigationController.dart';
 
 import 'package:patient/widgets/common_button.dart';
 
@@ -95,12 +97,13 @@ class _SplashScreenState extends State<SplashScreen> {
             ]),
             child: Center(
               child: commonBtn(
-                s: 'SignUp',
+                s: 'SignIn',
                 width: 100,
                 borderRadius: 50,
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SignUpPage()));
+                  Push(context, SignInScreen());
+                  // Navigator.push(context,
+                  //     MaterialPageRoute(builder: (context) => SignInScreen()));
                 },
                 textColor: Colors.white,
                 bgcolor: appblueColor,

@@ -7,7 +7,8 @@ class HomeController {
   late Map<String, dynamic> doctorspeciality;
   bool specialitybool = true;
 
-  Future<HomeDoctorSpecialityModel> getDoctorSpecilities() async {
+  Future<HomeDoctorSpecialityModel> getDoctorSpecilities(
+      BuildContext context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await PostData(
             PARAM_URL: 'get_doctor_specialisties.php',

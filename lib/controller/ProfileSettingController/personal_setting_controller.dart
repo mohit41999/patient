@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:patient/API%20repo/api_constants.dart';
+import 'package:patient/Models/patient_profile_model.dart';
 import 'package:patient/Screens/SignInScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../NavigationController.dart';

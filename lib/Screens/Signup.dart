@@ -161,8 +161,8 @@ class _SignUpPageState extends State<SignUpPage> {
                   bgcolor: appblueColor,
                   textColor: Colors.white,
                   onPressed: () {
-                    // _con.Signup(context);
-                    Push(context, SignInScreen());
+                    _con.Signup(context);
+                    // Push(context, SignInScreen());
                   })
             ],
           ),

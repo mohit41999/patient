@@ -202,7 +202,7 @@ class _PatientHomePage4State extends State<PatientHomePage4> {
                     child: commonRow(
                       Title: 'Health Care Services',
                       subTitle: 'View all',
-                      value: DoctorProfile(),
+                      value: DoctorProfile(fromhome: true),
                     ),
                   ),
                   SizedBox(
@@ -332,7 +332,7 @@ class _PatientHomePage4State extends State<PatientHomePage4> {
                                     bgcolor: Color(0xff161616).withOpacity(0.6),
                                     textColor: Colors.white,
                                     onPressed: () {
-                                      Push(context, DoctorProfile1());
+                                      // Push(context, DoctorProfile1());
                                     },
                                     width: 120,
                                     height: 30,

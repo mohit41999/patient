@@ -20,6 +20,7 @@ class _AccountSettingState extends State<AccountSetting> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         centerTitle: true,
         title: commonAppBarTitleText(appbarText: 'Account Setting'),

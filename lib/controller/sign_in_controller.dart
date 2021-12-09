@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:patient/API%20repo/api_constants.dart';
+import 'package:patient/Utils/progress_view.dart';
 import 'package:patient/general_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -17,22 +18,27 @@ class SignInController {
   login(BuildContext context, dynamic value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('user_id', value['data']['id']);
+    print(prefs.getString('user_id'));
 
     Push(context, GeneralScreen());
   }
 
-  void SignIn(BuildContext context) {
-    PostData(PARAM_URL: 'login.php', params: {
+  Future<void> SignIn(BuildContext context) async {
+    var loader = ProgressView(context);
+    loader.show();
+    var response = await PostData(PARAM_URL: 'login.php', params: {
       'token': Token,
       'email': email.text,
       'password': password.text,
-    }).then((value) {
-      (value['status'])
-          ? login(context, value)
-          : ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text(value['message']),
-              duration: Duration(seconds: 1),
-            ));
     });
+    loader.dismiss();
+    if (response['status']) {
+      login(context, response);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(response['message']),
+        duration: Duration(seconds: 1),
+      ));
+    }
   }
 }

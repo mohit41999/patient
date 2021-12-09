@@ -9,9 +9,11 @@ class doctorProfileRow extends StatelessWidget {
     Key? key,
     required this.title,
     required this.value,
+    this.yellow = false,
   }) : super(key: key);
   final String title;
   final String value;
+  final bool yellow;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +41,7 @@ class doctorProfileRow extends StatelessWidget {
             value,
             style: GoogleFonts.montserrat(
                 fontSize: 12,
-                color: Color(0xff161616),
+                color: (yellow) ? Color(0xffD68100) : Color(0xff161616),
                 fontWeight: FontWeight.bold),
           ),
         )

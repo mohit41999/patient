@@ -33,7 +33,9 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Map<dynamic, dynamic>> hometile = [
     {
       'label': 'Doctor Consultaion',
-      'Screen': DoctorProfile(),
+      'Screen': DoctorProfile(
+        fromhome: true,
+      ),
       'profile': 'Rectangle 69.png'
     },
     {
@@ -71,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
   TextEditingController _search = TextEditingController();
 
   void initialize() {
-    _con.getDoctorSpecilities().then((value) {
+    _con.getDoctorSpecilities(context).then((value) {
       setState(() {
         specialities = value;
         _con.specialitybool = false;
@@ -205,7 +207,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     bgcolor: appblueColor,
                                     textColor: Colors.white,
                                     onPressed: () {
-                                      Push(context, DoctorProfile1());
+                                      // Push(context, DoctorProfile1());
                                     },
                                     width: 120,
                                     height: 30,
@@ -299,7 +301,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: commonRow(
                       subTitle: 'View all',
                       Title: 'Find Your Doctors',
-                      value: DoctorProfile(),
+                      value: DoctorProfile(
+                        fromhome: true,
+                      ),
                     ),
                   ),
                   Padding(
@@ -324,7 +328,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                 padding: const EdgeInsets.all(8.0),
                                 child: GestureDetector(
                                   onTap: () {
-                                    Push(context, DoctorProfile());
+                                    Push(
+                                        context,
+                                        DoctorProfile(
+                                          fromhome: true,
+                                        ));
                                   },
                                   child: Column(
                                     children: [
@@ -363,7 +371,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: commonRow(
                       Title: 'Health Care Services',
                       subTitle: 'View all',
-                      value: DoctorProfile(),
+                      value: DoctorProfile(fromhome: true),
                     ),
                   ),
                   SizedBox(
@@ -434,7 +442,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: commonRow(
                       Title: 'Health Checkup at Home',
                       subTitle: 'View all',
-                      value: DoctorProfile(),
+                      value: DoctorProfile(fromhome: true),
                     ),
                   ),
                   SizedBox(

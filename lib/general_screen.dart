@@ -23,7 +23,7 @@ class _GeneralScreenState extends State<GeneralScreen> {
   List<Widget> _buildScreens() {
     return [
       HomeScreen(),
-      DoctorProfile(),
+      DoctorProfile(fromhome: false),
       // HomeScreen(),
       MedicineProfile(),
       LabProfile()

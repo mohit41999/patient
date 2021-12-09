@@ -52,6 +52,8 @@ dev_dependencies:
   flutter_rating_bar: any
   image_picker: ^0.8.4+4
   shared_preferences: ^2.0.9
+  flutter_html: ^2.2.0
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
