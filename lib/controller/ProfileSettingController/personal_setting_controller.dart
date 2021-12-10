@@ -3,6 +3,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:patient/API%20repo/api_constants.dart';
 import 'package:patient/Models/patient_profile_model.dart';
 import 'package:patient/Screens/SignInScreen.dart';
+import 'package:patient/Utils/progress_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../NavigationController.dart';
 
@@ -23,10 +24,13 @@ class PersonalSettingController {
   TextEditingController DOB = TextEditingController();
 
   Future<void> submit(BuildContext context) async {
+    var loader = ProgressView(context);
+    loader.show();
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? user_id = prefs.getString('user_id');
     print(user_id);
-    PostData(PARAM_URL: 'update_patient_details.php', params: {
+    var response =
+        await PostData(PARAM_URL: 'update_patient_details.php', params: {
       'token': Token,
       'user_id': user_id.toString(),
       'first_name': firstname.text,
@@ -41,16 +45,13 @@ class PersonalSettingController {
       'weight': weight.text,
       'emergency_contact': emergencycontact.text,
       'address': address.text,
-    }).then((value) {
-      (value['status'])
-          ? success(context, value)
-          : ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text(
-                value['message'].toString(),
-                textAlign: TextAlign.center,
-              ),
-              duration: Duration(seconds: 1),
-            ));
     });
+    print('-=========>>>>>' + response.toString());
+    loader.dismiss();
+    if (response['status']) {
+      success(context, response);
+    } else {
+      failure(context, response);
+    }
   }
 }

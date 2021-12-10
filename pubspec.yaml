@@ -53,6 +53,7 @@ dev_dependencies:
   image_picker: ^0.8.4+4
   shared_preferences: ^2.0.9
   flutter_html: ^2.2.0
+  local_auth: ^1.1.8
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -1,12 +1,10 @@
+import 'dart:async';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:patient/Screens/SignInScreen.dart';
-import 'package:patient/Screens/Signup.dart';
-import 'package:patient/Utils/colorsandstyles.dart';
-import 'package:patient/controller/NavigationController.dart';
-
-import 'package:patient/widgets/common_button.dart';
+import 'biometric_authenticate.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -16,6 +14,27 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  Future<void> navigate() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    print(prefs.get('user_id'));
+    Timer(
+        Duration(seconds: 3),
+        () => (prefs.get('user_id').toString() == null.toString())
+            ? Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => SignInScreen()))
+            : Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => BiometricAuthenticate())));
+  }
+
+  @override
+  void initState() {
+    navigate();
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,20 +114,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   blurRadius: 10,
                   spreadRadius: 20)
             ]),
-            child: Center(
-              child: commonBtn(
-                s: 'SignIn',
-                width: 100,
-                borderRadius: 50,
-                onPressed: () {
-                  Push(context, SignInScreen());
-                  // Navigator.push(context,
-                  //     MaterialPageRoute(builder: (context) => SignInScreen()));
-                },
-                textColor: Colors.white,
-                bgcolor: appblueColor,
-              ),
-            ),
+            child: Center(child: Image.asset('assets/pngs/logo.png')),
           )
         ],
       ),

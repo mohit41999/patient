@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:patient/Screens/SplashScreen.dart';
+import 'package:patient/Screens/biometric_authenticate.dart';
+import 'package:patient/demo.dart';
 
 void main() {
   runApp(const MyApp());

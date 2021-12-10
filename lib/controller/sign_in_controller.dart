@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:patient/API%20repo/api_constants.dart';
+import 'package:patient/Screens/biometric_authenticate.dart';
 import 'package:patient/Utils/progress_view.dart';
 import 'package:patient/general_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -20,7 +21,7 @@ class SignInController {
     prefs.setString('user_id', value['data']['id']);
     print(prefs.getString('user_id'));
 
-    Push(context, GeneralScreen());
+    Push(context, BiometricAuthenticate());
   }
 
   Future<void> SignIn(BuildContext context) async {
