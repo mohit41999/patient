@@ -14,6 +14,18 @@ class _LifestyleState extends State<Lifestyle> {
   LifestyleSettingController _con = LifestyleSettingController();
 
   @override
+  void initState() {
+    // TODO: implement initState
+
+    _con.initialize(context).then((value) {
+      setState(() {
+        _con.loading = false;
+      });
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       // resizeToAvoidBottomInset: false,

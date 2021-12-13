@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
+import 'package:patient/Utils/progress_view.dart';
 import 'package:patient/controller/ProfileSettingController/medical_setting_controller.dart';
 import 'package:patient/widgets/common_button.dart';
 import 'package:patient/widgets/title_enter_field.dart';
@@ -13,6 +14,15 @@ class Medical extends StatefulWidget {
 
 class _MedicalState extends State<Medical> {
   MedicalSettingController _con = MedicalSettingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    _con.initialize(context);
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

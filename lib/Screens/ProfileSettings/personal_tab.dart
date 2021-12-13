@@ -14,6 +14,14 @@ class Personal extends StatefulWidget {
 
 class _PersonalState extends State<Personal> {
   PersonalSettingController _con = PersonalSettingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    _con.initialize(context);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

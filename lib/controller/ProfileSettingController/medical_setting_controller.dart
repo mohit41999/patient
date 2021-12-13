@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:patient/API%20repo/api_constants.dart';
+import 'package:patient/Models/patient_medical_model.dart';
 import 'package:patient/Screens/SignInScreen.dart';
 import 'package:patient/Utils/progress_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -34,5 +35,28 @@ class MedicalSettingController {
     } else {
       failure(context, response);
     }
+  }
+
+  void initialize(BuildContext context) {
+    getdata(context).then((Profile) {
+      details_of_allergies.text = Profile.data.detailsOfAllergies;
+      chronic_disease.text = Profile.data.chronicDisease;
+      past_surgery_injury.text = Profile.data.pastSurgeryInjury;
+      current_and_past_medication.text = Profile.data.currentAndPastMedication;
+    });
+  }
+
+  Future<GetPatientMedical> getdata(BuildContext context) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? user_id = prefs.getString('user_id');
+    print(user_id);
+    var response =
+        await PostData(PARAM_URL: 'get_patient_medical.php', params: {
+      'token': Token,
+      'user_id': user_id.toString(),
+    });
+    print('-=========>>>>>' + response.toString());
+    // loader.dismiss();
+    return GetPatientMedical.fromJson(response);
   }
 }

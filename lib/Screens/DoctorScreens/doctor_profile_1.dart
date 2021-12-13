@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
 import 'package:patient/Models/doctor_profile_one_model.dart';
+import 'package:patient/Models/slot_time_model.dart';
 
 import 'package:patient/Screens/booking_appointment.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
@@ -25,6 +27,9 @@ class DoctorProfile1 extends StatefulWidget {
 class _DoctorProfile1State extends State<DoctorProfile1> {
   DoctorProfileOneController _con = DoctorProfileOneController();
   late DoctorProfileOneModel doctordetails;
+  late SlotTime slot_time;
+  DateTime date = DateTime.now();
+  late String selectedtime;
   Color textColor = Color(0xff161616);
   TextEditingController _controller = TextEditingController();
 
@@ -35,6 +40,15 @@ class _DoctorProfile1State extends State<DoctorProfile1> {
       setState(() {
         doctordetails = value;
         _con.loading = false;
+      });
+    });
+    _con
+        .getSlotTime(
+            context, widget.doc_id, '${date.year}-${date.month}-${date.day}')
+        .then((value) {
+      setState(() {
+        slot_time = value;
+        _con.slotloading = false;
       });
     });
     super.initState();
@@ -452,57 +466,54 @@ class _DoctorProfile1State extends State<DoctorProfile1> {
                                 ],
                               ),
                               Container(
-                                height: 54,
+                                height: 44,
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    IconButton(
-                                        onPressed: () {},
-                                        icon: Icon(
-                                          Icons.arrow_back_ios_new,
-                                          size: 18,
-                                          color: apptealColor,
-                                        )),
+                                    // IconButton(
+                                    //     onPressed: () {},
+                                    //     icon: Icon(
+                                    //       Icons.arrow_back_ios_new,
+                                    //       size: 18,
+                                    //       color: apptealColor,
+                                    //     )),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 8.0),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            "${date.day}-${date.month}-${date.year.toString().substring(2, 4)}",
+                                            style: GoogleFonts.montserrat(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Text(
+                                            '${slot_time.data.timeSlot.length} Slots',
+                                            style: GoogleFonts.montserrat(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                     Expanded(
-                                      child: ListView.builder(
-                                          itemCount: 5,
-                                          scrollDirection: Axis.horizontal,
-                                          itemBuilder: (context, index) {
-                                            return Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 8.0),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    'Today',
-                                                    style:
-                                                        GoogleFonts.montserrat(
-                                                            fontSize: 14,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold),
-                                                  ),
-                                                  SizedBox(
-                                                    height: 10,
-                                                  ),
-                                                  Text(
-                                                    '09 slots',
-                                                    style:
-                                                        GoogleFonts.montserrat(
-                                                            fontSize: 12,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold),
-                                                  ),
-                                                ],
-                                              ),
-                                            );
-                                          }),
+                                      child: Center(
+                                        child: Text(
+                                          'Select Date',
+                                          style: GoogleFonts.montserrat(
+                                              color: appblueColor,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 15),
+                                        ),
+                                      ),
                                     ),
                                     IconButton(
                                         onPressed: () {},
@@ -518,95 +529,148 @@ class _DoctorProfile1State extends State<DoctorProfile1> {
                                 color: textColor.withOpacity(0.4),
                                 thickness: 1,
                               ),
-                              Text(
-                                'Morning',
-                                style: GoogleFonts.montserrat(
-                                    fontSize: 14, fontWeight: FontWeight.bold),
-                              ),
-                              Container(
-                                height: 34,
-                                child: ListView.builder(
-                                  itemBuilder: (context, index) {
-                                    return Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 8.0),
-                                      child: commonBtn(
-                                        s: '10:00 AM',
-                                        bgcolor: Colors.white,
-                                        textColor: apptealColor,
-                                        onPressed: () {},
-                                        textSize: 12,
-                                        width: 100,
-                                        borderRadius: 0,
-                                        borderWidth: 1,
-                                        borderColor: apptealColor,
-                                      ),
-                                    );
-                                  },
-                                  itemCount: 5,
-                                  scrollDirection: Axis.horizontal,
-                                ),
-                              ),
-                              Text(
-                                'Afternoon',
-                                style: GoogleFonts.montserrat(
-                                    fontSize: 14, fontWeight: FontWeight.bold),
-                              ),
-                              Container(
-                                height: 34,
-                                child: ListView.builder(
-                                  itemBuilder: (context, index) {
-                                    return Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 8.0),
-                                      child: commonBtn(
-                                        s: '10:00 AM',
-                                        bgcolor: Colors.white,
-                                        textColor: apptealColor,
-                                        onPressed: () {},
-                                        height: 34,
-                                        textSize: 12,
-                                        width: 100,
-                                        borderRadius: 0,
-                                        borderWidth: 1,
-                                        borderColor: apptealColor,
-                                      ),
-                                    );
-                                  },
-                                  itemCount: 5,
-                                  scrollDirection: Axis.horizontal,
-                                ),
-                              ),
-                              Text(
-                                'Evening',
-                                style: GoogleFonts.montserrat(
-                                    fontSize: 14, fontWeight: FontWeight.bold),
-                              ),
-                              Container(
-                                height: 34,
-                                child: ListView.builder(
-                                  itemBuilder: (context, index) {
-                                    return Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 8.0),
-                                      child: commonBtn(
-                                        s: '10:00 AM',
-                                        bgcolor: Colors.white,
-                                        textColor: apptealColor,
-                                        onPressed: () {},
-                                        height: 34,
-                                        width: 100,
-                                        textSize: 12,
-                                        borderRadius: 0,
-                                        borderWidth: 1,
-                                        borderColor: apptealColor,
-                                      ),
-                                    );
-                                  },
-                                  itemCount: 5,
-                                  scrollDirection: Axis.horizontal,
-                                ),
-                              ),
+                              (_con.slotloading)
+                                  ? CircularProgressIndicator()
+                                  : Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Text(
+                                          'Morning',
+                                          style: GoogleFonts.montserrat(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Container(
+                                          height: 34,
+                                          child: ListView.builder(
+                                            itemBuilder: (context, index) {
+                                              int am = int.parse(slot_time
+                                                  .data.timeSlot[index].slotTime
+                                                  .substring(0, 2));
+                                              return (am < 12)
+                                                  ? Padding(
+                                                      padding: const EdgeInsets
+                                                              .symmetric(
+                                                          horizontal: 8.0),
+                                                      child: commonBtn(
+                                                        s: slot_time
+                                                                .data
+                                                                .timeSlot[index]
+                                                                .slotTime
+                                                                .substring(0, 5)
+                                                                .toString() +
+                                                            ' am',
+                                                        bgcolor: Colors.white,
+                                                        textColor: apptealColor,
+                                                        onPressed: () {},
+                                                        textSize: 12,
+                                                        width: 100,
+                                                        borderRadius: 0,
+                                                        borderWidth: 1,
+                                                        borderColor:
+                                                            apptealColor,
+                                                      ),
+                                                    )
+                                                  : Container();
+                                            },
+                                            itemCount:
+                                                slot_time.data.timeSlot.length,
+                                            scrollDirection: Axis.horizontal,
+                                          ),
+                                        ),
+                                        Text(
+                                          'Afternoon',
+                                          style: GoogleFonts.montserrat(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Container(
+                                          height: 34,
+                                          child: ListView.builder(
+                                            itemBuilder: (context, index) {
+                                              int am = int.parse(slot_time
+                                                  .data.timeSlot[index].slotTime
+                                                  .substring(0, 2));
+                                              return (am >= 12 && am < 17)
+                                                  ? Padding(
+                                                      padding: const EdgeInsets
+                                                              .symmetric(
+                                                          horizontal: 8.0),
+                                                      child: commonBtn(
+                                                        s: slot_time
+                                                                .data
+                                                                .timeSlot[index]
+                                                                .slotTime
+                                                                .substring(0, 5)
+                                                                .toString() +
+                                                            ' pm',
+                                                        bgcolor: Colors.white,
+                                                        textColor: apptealColor,
+                                                        onPressed: () {},
+                                                        textSize: 12,
+                                                        width: 100,
+                                                        borderRadius: 0,
+                                                        borderWidth: 1,
+                                                        borderColor:
+                                                            apptealColor,
+                                                      ),
+                                                    )
+                                                  : Container();
+                                            },
+                                            itemCount:
+                                                slot_time.data.timeSlot.length,
+                                            scrollDirection: Axis.horizontal,
+                                          ),
+                                        ),
+                                        Text(
+                                          'Evening',
+                                          style: GoogleFonts.montserrat(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Container(
+                                          height: 34,
+                                          child: ListView.builder(
+                                            itemBuilder: (context, index) {
+                                              int am = int.parse(slot_time
+                                                  .data.timeSlot[index].slotTime
+                                                  .substring(0, 2));
+                                              return (am >= 17)
+                                                  ? Padding(
+                                                      padding: const EdgeInsets
+                                                              .symmetric(
+                                                          horizontal: 8.0),
+                                                      child: commonBtn(
+                                                        s: slot_time
+                                                                .data
+                                                                .timeSlot[index]
+                                                                .slotTime
+                                                                .substring(0, 5)
+                                                                .toString() +
+                                                            ' pm',
+                                                        bgcolor: Colors.white,
+                                                        textColor: apptealColor,
+                                                        onPressed: () {},
+                                                        textSize: 12,
+                                                        width: 100,
+                                                        borderRadius: 0,
+                                                        borderWidth: 1,
+                                                        borderColor:
+                                                            apptealColor,
+                                                      ),
+                                                    )
+                                                  : Container();
+                                            },
+                                            itemCount:
+                                                slot_time.data.timeSlot.length,
+                                            scrollDirection: Axis.horizontal,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                               Text(
                                 'Enter Comments',
                                 style: GoogleFonts.montserrat(

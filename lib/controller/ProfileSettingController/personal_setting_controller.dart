@@ -54,4 +54,38 @@ class PersonalSettingController {
       failure(context, response);
     }
   }
+
+  void initialize(BuildContext context) {
+    getdata(context).then((Profile) {
+      firstname.text = Profile.data.firstName;
+      lastname.text = Profile.data.lastName;
+      email.text = Profile.data.email;
+      contactno.text = Profile.data.mobileNumber;
+      gender.text = Profile.data.gender;
+      DOB.text = Profile.data.dob.toString();
+      bloodGroup.text = Profile.data.bloodGroup;
+      maritalStatus.text = Profile.data.maritalStatus;
+      height.text = Profile.data.height;
+      weight.text = Profile.data.weight;
+      emergencycontact.text = Profile.data.emergencyContact;
+      address.text = Profile.data.address;
+      age.text = Profile.data.age;
+    });
+  }
+
+  Future<GetPatientProfile> getdata(BuildContext context) async {
+    // var loader = ProgressView(context);
+    // loader.show();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? user_id = prefs.getString('user_id');
+    print(user_id);
+    var response =
+        await PostData(PARAM_URL: 'get_patient_profile.php', params: {
+      'token': Token,
+      'user_id': user_id.toString(),
+    });
+    print('-=========>>>>>' + response.toString());
+    // loader.dismiss();
+    return GetPatientProfile.fromJson(response);
+  }
 }
