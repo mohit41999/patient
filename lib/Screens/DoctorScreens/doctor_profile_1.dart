@@ -565,7 +565,16 @@ class _DoctorProfile1State extends State<DoctorProfile1> {
                                                             ' am',
                                                         bgcolor: Colors.white,
                                                         textColor: apptealColor,
-                                                        onPressed: () {},
+                                                        onPressed: () {
+                                                          setState(() {
+                                                            selectedtime =
+                                                                slot_time
+                                                                    .data
+                                                                    .timeSlot[
+                                                                        index]
+                                                                    .slotTime;
+                                                          });
+                                                        },
                                                         textSize: 12,
                                                         width: 100,
                                                         borderRadius: 0,
@@ -609,7 +618,16 @@ class _DoctorProfile1State extends State<DoctorProfile1> {
                                                             ' pm',
                                                         bgcolor: Colors.white,
                                                         textColor: apptealColor,
-                                                        onPressed: () {},
+                                                        onPressed: () {
+                                                          setState(() {
+                                                            selectedtime =
+                                                                slot_time
+                                                                    .data
+                                                                    .timeSlot[
+                                                                        index]
+                                                                    .slotTime;
+                                                          });
+                                                        },
                                                         textSize: 12,
                                                         width: 100,
                                                         borderRadius: 0,
@@ -653,7 +671,16 @@ class _DoctorProfile1State extends State<DoctorProfile1> {
                                                             ' pm',
                                                         bgcolor: Colors.white,
                                                         textColor: apptealColor,
-                                                        onPressed: () {},
+                                                        onPressed: () {
+                                                          setState(() {
+                                                            selectedtime =
+                                                                slot_time
+                                                                    .data
+                                                                    .timeSlot[
+                                                                        index]
+                                                                    .slotTime;
+                                                          });
+                                                        },
                                                         textSize: 12,
                                                         width: 100,
                                                         borderRadius: 0,
