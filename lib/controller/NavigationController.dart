@@ -7,3 +7,8 @@ Future Push(BuildContext context, dynamic value) async {
 Future Pop(BuildContext context) async {
   Navigator.pop(context);
 }
+
+Future PushReplacement(BuildContext context, dynamic value) async {
+  Navigator.pushReplacement(
+      context, MaterialPageRoute(builder: (context) => value));
+}

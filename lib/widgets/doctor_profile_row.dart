@@ -21,7 +21,7 @@ class doctorProfileRow extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          width: MediaQuery.of(context).size.width / 5,
+          width: MediaQuery.of(context).size.width / 4.7,
           child: Text(
             title,
             style: GoogleFonts.montserrat(

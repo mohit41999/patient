@@ -5,7 +5,6 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:patient/Models/doctor_profile_one_model.dart';
 import 'package:patient/Models/slot_time_model.dart';
-
 import 'package:patient/Screens/booking_appointment.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
 
@@ -28,10 +27,50 @@ class _DoctorProfile1State extends State<DoctorProfile1> {
   DoctorProfileOneController _con = DoctorProfileOneController();
   late DoctorProfileOneModel doctordetails;
   late SlotTime slot_time;
+  int _selectedindex = -1;
+  String selectedTime = '';
   DateTime date = DateTime.now();
-  late String selectedtime;
+
   Color textColor = Color(0xff161616);
   TextEditingController _controller = TextEditingController();
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: date,
+      firstDate: DateTime.now(),
+      lastDate: DateTime(
+          DateTime.now().year, DateTime.now().month, DateTime.now().day + 7),
+      builder: (context, child) => Theme(
+          data: ThemeData().copyWith(
+            dialogBackgroundColor: appblueColor,
+            colorScheme: ColorScheme.dark(
+                primary: Colors.white,
+                surface: appblueColor,
+                onSurface: Colors.white,
+                onPrimary: appblueColor),
+          ),
+          child: child!),
+    );
+    if (pickedDate != null)
+      setState(() {
+        date = pickedDate;
+
+        print(date);
+      });
+  }
+
+  Future initializeSlots() async {
+    _con
+        .getSlotTime(
+            context, widget.doc_id, '${date.year}-${date.month}-${date.day}')
+        .then((value) {
+      setState(() {
+        slot_time = value;
+        _con.loading = false;
+      });
+    });
+  }
 
   @override
   void initState() {
@@ -39,18 +78,11 @@ class _DoctorProfile1State extends State<DoctorProfile1> {
     _con.getDoctorDetails(context, widget.doc_id).then((value) {
       setState(() {
         doctordetails = value;
-        _con.loading = false;
+        initializeSlots();
       });
     });
-    _con
-        .getSlotTime(
-            context, widget.doc_id, '${date.year}-${date.month}-${date.day}')
-        .then((value) {
-      setState(() {
-        slot_time = value;
-        _con.slotloading = false;
-      });
-    });
+    // print(slot_time.toString());
+
     super.initState();
   }
 
@@ -479,49 +511,77 @@ class _DoctorProfile1State extends State<DoctorProfile1> {
                                     //       size: 18,
                                     //       color: apptealColor,
                                     //     )),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 8.0),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            "${date.day}-${date.month}-${date.year.toString().substring(2, 4)}",
-                                            style: GoogleFonts.montserrat(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text(
-                                            '${slot_time.data.timeSlot.length} Slots',
-                                            style: GoogleFonts.montserrat(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
                                     Expanded(
                                       child: Center(
-                                        child: Text(
-                                          'Select Date',
-                                          style: GoogleFonts.montserrat(
-                                              color: appblueColor,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 15),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              "${date.day}-${date.month}-${date.year.toString().substring(2, 4)}",
+                                              style: GoogleFonts.montserrat(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                            Text(
+                                              '${slot_time.data.timeSlot.length} Slots',
+                                              style: GoogleFonts.montserrat(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ),
-                                    IconButton(
-                                        onPressed: () {},
-                                        icon: Icon(
-                                          Icons.arrow_forward_ios,
-                                          size: 18,
-                                          color: apptealColor,
-                                        )),
+                                    Expanded(
+                                      child: commonBtn(
+                                        height: 50,
+                                        borderWidth: 2,
+                                        textSize: 12,
+                                        s: 'Select Date',
+                                        bgcolor: Colors.white,
+                                        textColor: appblueColor,
+                                        onPressed: () {
+                                          _selectDate(context).then((value) {
+                                            setState(() {
+                                              initializeSlots();
+                                            });
+                                          });
+                                        },
+                                        borderRadius: 10,
+                                        borderColor: appblueColor,
+                                      ),
+                                    ),
+                                    // Expanded(
+                                    //   child: GestureDetector(
+                                    //     onTap: () {
+                                    //       _selectDate(context).then((value) {
+                                    //         setState(() {
+                                    //           initializeSlots();
+                                    //         });
+                                    //       });
+                                    //     },
+                                    //     child: Center(
+                                    //       child: Text(
+                                    //         'Select Date',
+                                    //         style: GoogleFonts.montserrat(
+                                    //             color: appblueColor,
+                                    //             fontWeight: FontWeight.bold,
+                                    //             fontSize: 15),
+                                    //       ),
+                                    //     ),
+                                    //   ),
+                                    // ),
+                                    // IconButton(
+                                    //     onPressed: () {},
+                                    //     icon: Icon(
+                                    //       Icons.arrow_forward_ios,
+                                    //       size: 18,
+                                    //       color: apptealColor,
+                                    //     )),
                                   ],
                                 ),
                               ),
@@ -529,175 +589,34 @@ class _DoctorProfile1State extends State<DoctorProfile1> {
                                 color: textColor.withOpacity(0.4),
                                 thickness: 1,
                               ),
-                              (_con.slotloading)
-                                  ? CircularProgressIndicator()
-                                  : Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        Text(
-                                          'Morning',
-                                          style: GoogleFonts.montserrat(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        Container(
-                                          height: 34,
-                                          child: ListView.builder(
-                                            itemBuilder: (context, index) {
-                                              int am = int.parse(slot_time
-                                                  .data.timeSlot[index].slotTime
-                                                  .substring(0, 2));
-                                              return (am < 12)
-                                                  ? Padding(
-                                                      padding: const EdgeInsets
-                                                              .symmetric(
-                                                          horizontal: 8.0),
-                                                      child: commonBtn(
-                                                        s: slot_time
-                                                                .data
-                                                                .timeSlot[index]
-                                                                .slotTime
-                                                                .substring(0, 5)
-                                                                .toString() +
-                                                            ' am',
-                                                        bgcolor: Colors.white,
-                                                        textColor: apptealColor,
-                                                        onPressed: () {
-                                                          setState(() {
-                                                            selectedtime =
-                                                                slot_time
-                                                                    .data
-                                                                    .timeSlot[
-                                                                        index]
-                                                                    .slotTime;
-                                                          });
-                                                        },
-                                                        textSize: 12,
-                                                        width: 100,
-                                                        borderRadius: 0,
-                                                        borderWidth: 1,
-                                                        borderColor:
-                                                            apptealColor,
-                                                      ),
-                                                    )
-                                                  : Container();
-                                            },
-                                            itemCount:
-                                                slot_time.data.timeSlot.length,
-                                            scrollDirection: Axis.horizontal,
-                                          ),
-                                        ),
-                                        Text(
-                                          'Afternoon',
-                                          style: GoogleFonts.montserrat(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        Container(
-                                          height: 34,
-                                          child: ListView.builder(
-                                            itemBuilder: (context, index) {
-                                              int am = int.parse(slot_time
-                                                  .data.timeSlot[index].slotTime
-                                                  .substring(0, 2));
-                                              return (am >= 12 && am < 17)
-                                                  ? Padding(
-                                                      padding: const EdgeInsets
-                                                              .symmetric(
-                                                          horizontal: 8.0),
-                                                      child: commonBtn(
-                                                        s: slot_time
-                                                                .data
-                                                                .timeSlot[index]
-                                                                .slotTime
-                                                                .substring(0, 5)
-                                                                .toString() +
-                                                            ' pm',
-                                                        bgcolor: Colors.white,
-                                                        textColor: apptealColor,
-                                                        onPressed: () {
-                                                          setState(() {
-                                                            selectedtime =
-                                                                slot_time
-                                                                    .data
-                                                                    .timeSlot[
-                                                                        index]
-                                                                    .slotTime;
-                                                          });
-                                                        },
-                                                        textSize: 12,
-                                                        width: 100,
-                                                        borderRadius: 0,
-                                                        borderWidth: 1,
-                                                        borderColor:
-                                                            apptealColor,
-                                                      ),
-                                                    )
-                                                  : Container();
-                                            },
-                                            itemCount:
-                                                slot_time.data.timeSlot.length,
-                                            scrollDirection: Axis.horizontal,
-                                          ),
-                                        ),
-                                        Text(
-                                          'Evening',
-                                          style: GoogleFonts.montserrat(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        Container(
-                                          height: 34,
-                                          child: ListView.builder(
-                                            itemBuilder: (context, index) {
-                                              int am = int.parse(slot_time
-                                                  .data.timeSlot[index].slotTime
-                                                  .substring(0, 2));
-                                              return (am >= 17)
-                                                  ? Padding(
-                                                      padding: const EdgeInsets
-                                                              .symmetric(
-                                                          horizontal: 8.0),
-                                                      child: commonBtn(
-                                                        s: slot_time
-                                                                .data
-                                                                .timeSlot[index]
-                                                                .slotTime
-                                                                .substring(0, 5)
-                                                                .toString() +
-                                                            ' pm',
-                                                        bgcolor: Colors.white,
-                                                        textColor: apptealColor,
-                                                        onPressed: () {
-                                                          setState(() {
-                                                            selectedtime =
-                                                                slot_time
-                                                                    .data
-                                                                    .timeSlot[
-                                                                        index]
-                                                                    .slotTime;
-                                                          });
-                                                        },
-                                                        textSize: 12,
-                                                        width: 100,
-                                                        borderRadius: 0,
-                                                        borderWidth: 1,
-                                                        borderColor:
-                                                            apptealColor,
-                                                      ),
-                                                    )
-                                                  : Container();
-                                            },
-                                            itemCount:
-                                                slot_time.data.timeSlot.length,
-                                            scrollDirection: Axis.horizontal,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Slots(
+                                      text: 'Morning',
+                                      startTime: 0,
+                                      endTime: 12,
+                                      time: ' am'),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Slots(
+                                      text: 'Afternoon',
+                                      startTime: 12,
+                                      endTime: 17,
+                                      time: ' pm'),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Slots(
+                                      text: 'Evening',
+                                      startTime: 17,
+                                      endTime: 24,
+                                      time: ' pm'),
+                                ],
+                              ),
                               Text(
                                 'Enter Comments',
                                 style: GoogleFonts.montserrat(
@@ -734,7 +653,11 @@ class _DoctorProfile1State extends State<DoctorProfile1> {
                             textColor: Colors.white,
                             borderRadius: 8,
                             onPressed: () {
-                              Push(context, BookingAppointment());
+                              _con.add_booking_request(
+                                  context,
+                                  widget.doc_id,
+                                  '${date.year}-${date.month}-${date.day}',
+                                  selectedTime);
                             }),
                       ),
                     ],
@@ -772,20 +695,92 @@ class _DoctorProfile1State extends State<DoctorProfile1> {
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
-      // bottomNavigationBar: Padding(
-      //   padding: const EdgeInsets.all(8.0),
-      //   child: commonBtn(
-      //       s: 'Book an Appointment',
-      //       bgcolor: appblueColor,
-      //       textColor: Colors.white,
-      //       borderRadius: 8,
-      //       onPressed: () {
-      //         Push(context, BookingAppointment());
-      //       }),
-      // ),
+    );
+  }
+
+  Column Slots(
+      {required String text,
+      required int startTime,
+      required int endTime,
+      required String time}) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              text,
+              style: GoogleFonts.montserrat(
+                  fontSize: 14, fontWeight: FontWeight.bold),
+            ),
+            // Icon(
+            //   Icons.arrow_forward_ios,
+            //   color: apptealColor,
+            //   size: 20,
+            // ),
+          ],
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        Container(
+          height: 34,
+          child: ListView.builder(
+            itemBuilder: (context, index) {
+              int am = int.parse(
+                  slot_time.data.timeSlot[index].slotTime.substring(0, 2));
+              return (am >= startTime && am < endTime)
+                  ? Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: commonBtn(
+                        s: slot_time.data.timeSlot[index].slotTime
+                                .substring(0, 5)
+                                .toString() +
+                            time,
+                        bgcolor: slot_time.data.timeSlot[index].status ==
+                                'availiable'
+                            ? (_selectedindex == index)
+                                ? apptealColor
+                                : Colors.white
+                            : Colors.white,
+                        textColor: slot_time.data.timeSlot[index].status ==
+                                'availiable'
+                            ? (_selectedindex == index)
+                                ? Colors.white
+                                : apptealColor
+                            : Colors.grey,
+                        onPressed: () {
+                          setState(() {
+                            _selectedindex = index;
+                            selectedTime =
+                                slot_time.data.timeSlot[index].status ==
+                                        'availiable'
+                                    ? slot_time.data.timeSlot[index].slotTime
+                                    : '';
+                            print(selectedTime + '${_selectedindex}');
+                          });
+                        },
+                        textSize: 12,
+                        width: 100,
+                        borderRadius: 0,
+                        borderWidth: 1,
+                        borderColor: slot_time.data.timeSlot[index].status ==
+                                'availiable'
+                            ? apptealColor
+                            : Colors.grey,
+                      ),
+                    )
+                  : Container();
+            },
+            itemCount: slot_time.data.timeSlot.length,
+            scrollDirection: Axis.horizontal,
+          ),
+        ),
+      ],
     );
   }
 }
