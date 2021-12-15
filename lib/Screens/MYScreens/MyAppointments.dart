@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:patient/Models/my_appointment_model.dart';
 
 import 'package:patient/Screens/MYScreens/MyLabTest.dart';
 import 'package:patient/Screens/MedicineProfile.dart';
@@ -8,6 +9,7 @@ import 'package:patient/Screens/Products.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:patient/controller/My%20Screens%20Controller/my_appointments_controller.dart';
 import 'package:patient/widgets/commonAppBarLeading.dart';
 import 'package:patient/widgets/common_app_bar_title.dart';
 import 'package:patient/widgets/title_column.dart';
@@ -20,6 +22,24 @@ class MyAppointments extends StatefulWidget {
 }
 
 class _MyAppointmentsState extends State<MyAppointments> {
+  late MyAppointmentsModel details;
+
+  MyAppointmentController _con = MyAppointmentController();
+  Future initialize() async {
+    await _con.getMyAppointments().then((value) {
+      setState(() {
+        details = value;
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    initialize();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +69,7 @@ class _MyAppointmentsState extends State<MyAppointments> {
             child: ListView.builder(
                 shrinkWrap: true,
                 itemCount: 10,
-                itemBuilder: (context, int) {
+                itemBuilder: (context, int index) {
                   return Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Container(
@@ -102,15 +122,18 @@ class _MyAppointmentsState extends State<MyAppointments> {
                                           children: [
                                             titleColumn(
                                               title: 'Booking Id',
-                                              value: '9956328',
+                                              value:
+                                                  details.data[index].booingId,
                                             ),
                                             titleColumn(
                                               value: 'Lorem ipsum.',
-                                              title: 'Doctor Name',
+                                              title: details
+                                                  .data[index].doctorName,
                                             ),
                                             titleColumn(
                                               value: 'Gujarat',
-                                              title: 'Location',
+                                              title:
+                                                  details.data[index].location,
                                             ),
                                           ],
                                         ),
@@ -122,7 +145,7 @@ class _MyAppointmentsState extends State<MyAppointments> {
                                                 MainAxisAlignment.spaceEvenly,
                                             children: [
                                               Text(
-                                                'Pending',
+                                                details.data[index].status,
                                                 style: GoogleFonts.lato(
                                                     color: Color(0xffD68100),
                                                     fontSize: 10,
@@ -130,7 +153,7 @@ class _MyAppointmentsState extends State<MyAppointments> {
                                                         FontWeight.bold),
                                               ),
                                               Text(
-                                                '\$199',
+                                                '\$${details.data[index].fees}',
                                                 style: GoogleFonts.poppins(
                                                     color: Color(0xff252525),
                                                     fontSize: 16,
