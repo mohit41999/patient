@@ -8,7 +8,7 @@ import 'package:patient/Screens/Signup.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
 import 'package:patient/controller/NavigationController.dart';
 import 'package:patient/controller/sign_in_controller.dart';
-import 'package:patient/general_screen.dart';
+
 import 'package:patient/widgets/bottombar.dart';
 
 import 'package:patient/widgets/common_app_bar_title.dart';

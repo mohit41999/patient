@@ -52,7 +52,7 @@ class Datum {
   String location;
   String status;
   String profile;
-  DateTime bookingDate;
+  String bookingDate;
   String fees;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
@@ -61,7 +61,7 @@ class Datum {
         location: json["Location"],
         status: json["Status"],
         profile: json["Profile"],
-        bookingDate: DateTime.parse(json["Booking Date"]),
+        bookingDate: json["Booking Date"],
         fees: json["Fees"],
       );
 
@@ -71,8 +71,7 @@ class Datum {
         "Location": location,
         "Status": status,
         "Profile": profile,
-        "Booking Date":
-            "${bookingDate.year.toString().padLeft(4, '0')}-${bookingDate.month.toString().padLeft(2, '0')}-${bookingDate.day.toString().padLeft(2, '0')}",
+        "Booking Date": bookingDate,
         "Fees": fees,
       };
 }

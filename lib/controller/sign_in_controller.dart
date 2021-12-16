@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:patient/API%20repo/api_constants.dart';
 import 'package:patient/Screens/biometric_authenticate.dart';
 import 'package:patient/Utils/progress_view.dart';
-import 'package:patient/general_screen.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'NavigationController.dart';

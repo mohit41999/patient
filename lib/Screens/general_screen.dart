@@ -2,15 +2,16 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:patient/Screens/Home.dart';
+import 'package:patient/Utils/colorsandstyles.dart';
 import 'package:patient/controller/NavigationController.dart';
-import 'package:patient/search_screen.dart';
+import 'package:patient/Screens/search_screen.dart';
 import 'package:patient/widgets/bottombar.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:flutter/cupertino.dart';
-import 'Screens/DoctorScreens/doctor_profile.dart';
-import 'Screens/LabProfile.dart';
-import 'Screens/MedicineProfile.dart';
-import 'Utils/colorsandstyles.dart';
+import 'DoctorScreens/doctor_profile.dart';
+import 'LabProfile.dart';
+import 'MedicineProfile.dart';
+
 
 class GeneralScreen extends StatefulWidget {
   const GeneralScreen({Key? key}) : super(key: key);

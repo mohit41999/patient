@@ -50,7 +50,7 @@ class Datum {
   String userId;
   String firstName;
   String lastName;
-  String specialist;
+  dynamic specialist;
   String experience;
   String location;
   String profileImage;

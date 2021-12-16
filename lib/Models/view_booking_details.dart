@@ -5,14 +5,14 @@
 import 'package:meta/meta.dart';
 import 'dart:convert';
 
-ViewBookingDetails viewBookingDetailsFromJson(String str) =>
-    ViewBookingDetails.fromJson(json.decode(str));
+ViewBookingDetailsModel viewBookingDetailsFromJson(String str) =>
+    ViewBookingDetailsModel.fromJson(json.decode(str));
 
-String viewBookingDetailsToJson(ViewBookingDetails data) =>
+String viewBookingDetailsToJson(ViewBookingDetailsModel data) =>
     json.encode(data.toJson());
 
-class ViewBookingDetails {
-  ViewBookingDetails({
+class ViewBookingDetailsModel {
+  ViewBookingDetailsModel({
     required this.status,
     required this.message,
     required this.data,
@@ -22,8 +22,8 @@ class ViewBookingDetails {
   String message;
   Data data;
 
-  factory ViewBookingDetails.fromJson(Map<String, dynamic> json) =>
-      ViewBookingDetails(
+  factory ViewBookingDetailsModel.fromJson(Map<String, dynamic> json) =>
+      ViewBookingDetailsModel(
         status: json["status"],
         message: json["message"],
         data: Data.fromJson(json["data"]),
@@ -57,7 +57,7 @@ class Data {
   String bookingStatus;
   String patientName;
   String patientLocation;
-  DateTime bookedDate;
+  String bookedDate;
   String bookedServiceTime;
   String clinicLocation;
   String totalAmount;
@@ -70,7 +70,7 @@ class Data {
         bookingStatus: json["Booking Status"],
         patientName: json["Patient Name"],
         patientLocation: json["patient Location"],
-        bookedDate: DateTime.parse(json["Booked Date"]),
+        bookedDate: json["Booked Date"],
         bookedServiceTime: json["Booked Service Time"],
         clinicLocation: json["Clinic Location"],
         totalAmount: json["Total Amount"],
@@ -84,8 +84,7 @@ class Data {
         "Booking Status": bookingStatus,
         "Patient Name": patientName,
         "patient Location": patientLocation,
-        "Booked Date":
-            "${bookedDate.year.toString().padLeft(4, '0')}-${bookedDate.month.toString().padLeft(2, '0')}-${bookedDate.day.toString().padLeft(2, '0')}",
+        "Booked Date": bookedDate,
         "Booked Service Time": bookedServiceTime,
         "Clinic Location": clinicLocation,
         "Total Amount": totalAmount,

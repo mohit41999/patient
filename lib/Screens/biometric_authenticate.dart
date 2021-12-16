@@ -5,9 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:patient/API%20repo/local_auth_api.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
 import 'package:patient/controller/NavigationController.dart';
-import 'package:patient/general_screen.dart';
+
 import 'package:patient/widgets/common_app_bar_title.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'general_screen.dart';
 
 class BiometricAuthenticate extends StatefulWidget {
   const BiometricAuthenticate({Key? key}) : super(key: key);

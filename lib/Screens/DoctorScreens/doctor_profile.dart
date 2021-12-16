@@ -126,170 +126,156 @@ class _DoctorProfileState extends State<DoctorProfile> {
                       itemCount: _doctordata.data.length,
                       itemBuilder: (context, index) {
                         var Docs = _doctordata.data[index];
-                        return (index != 1)
-                            ? Container()
-                            : Padding(
-                                padding: (index + 1 == 10)
-                                    ? EdgeInsets.only(
-                                        left: 10,
-                                        right: 10,
-                                        bottom: 50,
-                                        top: 10)
-                                    : const EdgeInsets.all(5.0),
-                                child: Container(
-                                  height: 190,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(15),
-                                        bottomRight: Radius.circular(15)),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey.withOpacity(0.5),
-                                        blurRadius: 10,
-                                        offset: const Offset(2, 5),
-                                      ),
-                                    ],
-                                  ),
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    mainAxisSize: MainAxisSize.min,
+                        return
+                            // (index != 1)
+                            //   ? Container()
+                            //   :
+                            Padding(
+                          padding: (index + 1 == 10)
+                              ? EdgeInsets.only(
+                                  left: 10, right: 10, bottom: 50, top: 10)
+                              : const EdgeInsets.all(5.0),
+                          child: Container(
+                            height: 190,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(15),
+                                  bottomRight: Radius.circular(15)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  blurRadius: 10,
+                                  offset: const Offset(2, 5),
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Container(
+                                  height: 150,
+                                  child: Row(
                                     children: [
-                                      Container(
-                                        height: 150,
-                                        child: Row(
-                                          children: [
-                                            Expanded(
-                                              flex: 1,
-                                              child: CircleAvatar(
-                                                backgroundImage: NetworkImage(
-                                                    Docs.profileImage),
-                                                radius: 50,
-                                              ),
-                                            ),
-                                            Expanded(
-                                              flex: 2,
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(10.0),
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceAround,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                        Docs.firstName
-                                                                .toString() +
-                                                            ' ' +
-                                                            Docs.lastName
-                                                                .toString(),
-                                                        style: KHeader),
-                                                    Text(
-                                                        'Hair Transplat Surgeon',
-                                                        style: GoogleFonts
-                                                            .montserrat(
-                                                                color: Colors
-                                                                    .black,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                fontSize: 12)),
-                                                    rowTextIcon(
-                                                      text:
-                                                          '17 yrs of exp. overall',
-                                                      asset:
-                                                          'assets/pngs/Group.png',
-                                                    ),
-                                                    Row(
-                                                      children: [
-                                                        Expanded(
-                                                          flex: 2,
-                                                          child: rowTextIcon(
-                                                            text: 'Location',
-                                                            asset:
-                                                                'assets/pngs/Group 1182.png',
-                                                          ),
-                                                        ),
-                                                        Expanded(
-                                                          child: rowTextIcon(
-                                                            text: '95%',
-                                                            asset:
-                                                                'assets/pngs/Icon awesome-thumbs-up.png',
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Expanded(
-                                                          flex: 2,
-                                                          child: rowTextIcon(
-                                                            text:
-                                                                'Available Today',
-                                                            asset:
-                                                                'assets/pngs/Path 2062.png',
-                                                          ),
-                                                        ),
-                                                        Expanded(
-                                                          child: rowTextIcon(
-                                                            text: '125',
-                                                            asset:
-                                                                'assets/pngs/Icon awesome-star.png',
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ],
+                                      Expanded(
+                                        flex: 1,
+                                        child: CircleAvatar(
+                                          backgroundImage:
+                                              NetworkImage(Docs.profileImage),
+                                          radius: 50,
                                         ),
                                       ),
-                                      SizedBox(
-                                        height: 40,
-                                        width: double.infinity,
-                                        child: TextButton(
-                                          style: ButtonStyle(
-                                              backgroundColor:
-                                                  MaterialStateProperty.all<
-                                                      Color>(appblueColor),
-                                              shape: MaterialStateProperty.all<
-                                                      RoundedRectangleBorder>(
-                                                  RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(15),
-                                                    bottomRight:
-                                                        Radius.circular(15)),
-                                              ))),
-                                          onPressed: () {
-                                            Push(
-                                                context,
-                                                DoctorProfile1(
-                                                  doc_id: Docs.userId,
-                                                ));
-                                          },
-                                          child: Text(
-                                            'Book An Appointment',
-                                            style: GoogleFonts.montserrat(
-                                                fontSize: 12,
-                                                color: Colors.white,
-                                                letterSpacing: 1,
-                                                fontWeight: FontWeight.bold),
+                                      Expanded(
+                                        flex: 2,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                  Docs.firstName.toString() +
+                                                      ' ' +
+                                                      Docs.lastName.toString(),
+                                                  style: KHeader),
+                                              Text(Docs.specialist.toString(),
+                                                  style: GoogleFonts.montserrat(
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 12)),
+                                              rowTextIcon(
+                                                text: Docs.experience +
+                                                    ' yrs of exp. overall',
+                                                asset: 'assets/pngs/Group.png',
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Expanded(
+                                                    flex: 2,
+                                                    child: rowTextIcon(
+                                                      text: Docs.location,
+                                                      asset:
+                                                          'assets/pngs/Group 1182.png',
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    child: rowTextIcon(
+                                                      text: '95%',
+                                                      asset:
+                                                          'assets/pngs/Icon awesome-thumbs-up.png',
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Expanded(
+                                                    flex: 2,
+                                                    child: rowTextIcon(
+                                                      text: 'Available Today',
+                                                      asset:
+                                                          'assets/pngs/Path 2062.png',
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    child: rowTextIcon(
+                                                      text: '125',
+                                                      asset:
+                                                          'assets/pngs/Icon awesome-star.png',
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
                                           ),
                                         ),
-                                      )
+                                      ),
                                     ],
                                   ),
                                 ),
-                              );
+                                SizedBox(
+                                  height: 40,
+                                  width: double.infinity,
+                                  child: TextButton(
+                                    style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all<Color>(
+                                                appblueColor),
+                                        shape: MaterialStateProperty.all<
+                                                RoundedRectangleBorder>(
+                                            RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.only(
+                                              bottomLeft: Radius.circular(15),
+                                              bottomRight: Radius.circular(15)),
+                                        ))),
+                                    onPressed: () {
+                                      Push(
+                                          context,
+                                          DoctorProfile1(
+                                            doc_id: Docs.userId,
+                                          ));
+                                    },
+                                    child: Text(
+                                      'Book An Appointment',
+                                      style: GoogleFonts.montserrat(
+                                          fontSize: 12,
+                                          color: Colors.white,
+                                          letterSpacing: 1,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        );
                       }),
                 ),
               ],

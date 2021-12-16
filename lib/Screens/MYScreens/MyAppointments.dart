@@ -6,10 +6,12 @@ import 'package:patient/Screens/MYScreens/MyLabTest.dart';
 import 'package:patient/Screens/MedicineProfile.dart';
 import 'package:patient/Screens/ProductDetails.dart';
 import 'package:patient/Screens/Products.dart';
+import 'package:patient/Screens/view_booking_details.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:patient/controller/My%20Screens%20Controller/my_appointments_controller.dart';
+import 'package:patient/controller/NavigationController.dart';
 import 'package:patient/widgets/commonAppBarLeading.dart';
 import 'package:patient/widgets/common_app_bar_title.dart';
 import 'package:patient/widgets/title_column.dart';
@@ -23,12 +25,14 @@ class MyAppointments extends StatefulWidget {
 
 class _MyAppointmentsState extends State<MyAppointments> {
   late MyAppointmentsModel details;
+  bool loading = true;
 
   MyAppointmentController _con = MyAppointmentController();
   Future initialize() async {
     await _con.getMyAppointments().then((value) {
       setState(() {
         details = value;
+        loading = false;
       });
     });
   }
@@ -62,148 +66,164 @@ class _MyAppointmentsState extends State<MyAppointments> {
                   Navigator.pop(context);
                 })),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(
-            child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: 10,
-                itemBuilder: (context, int index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Container(
-                      height: 170,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(15),
-                            bottomRight: Radius.circular(15)),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            blurRadius: 10,
-                            offset: const Offset(2, 5),
-                          ),
-                        ],
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Container(
-                            height: 130,
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                            image: AssetImage(
-                                              'assets/pngs/Ellipse 651.png',
-                                            ),
-                                            fit: BoxFit.cover)),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 2,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            titleColumn(
-                                              title: 'Booking Id',
-                                              value:
-                                                  details.data[index].booingId,
-                                            ),
-                                            titleColumn(
-                                              value: 'Lorem ipsum.',
-                                              title: details
-                                                  .data[index].doctorName,
-                                            ),
-                                            titleColumn(
-                                              value: 'Gujarat',
-                                              title:
-                                                  details.data[index].location,
-                                            ),
-                                          ],
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              right: 10.0),
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
-                                            children: [
-                                              Text(
-                                                details.data[index].status,
-                                                style: GoogleFonts.lato(
-                                                    color: Color(0xffD68100),
-                                                    fontSize: 10,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                              Text(
-                                                '\$${details.data[index].fees}',
-                                                style: GoogleFonts.poppins(
-                                                    color: Color(0xff252525),
-                                                    fontSize: 16,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              )
-                                            ],
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
+      body: (loading)
+          ? Center(child: CircularProgressIndicator())
+          : Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: details.data.length,
+                      itemBuilder: (context, int index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Container(
+                            height: 170,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(15),
+                                  bottomRight: Radius.circular(15)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  blurRadius: 10,
+                                  offset: const Offset(2, 5),
                                 ),
                               ],
                             ),
-                          ),
-                          SizedBox(
-                            height: 40,
-                            width: double.infinity,
-                            child: TextButton(
-                              style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          appblueColor),
-                                  shape: MaterialStateProperty.all<
-                                          RoundedRectangleBorder>(
-                                      RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(15),
-                                        bottomRight: Radius.circular(15)),
-                                  ))),
-                              onPressed: () {},
-                              child: Text(
-                                'View Booking Details',
-                                style: GoogleFonts.montserrat(
-                                    fontSize: 12,
-                                    color: Colors.white,
-                                    letterSpacing: 1,
-                                    fontWeight: FontWeight.bold),
-                              ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Container(
+                                  height: 130,
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                        flex: 1,
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                  image: AssetImage(
+                                                    'assets/pngs/Ellipse 651.png',
+                                                  ),
+                                                  fit: BoxFit.cover)),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        flex: 2,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceEvenly,
+                                                children: [
+                                                  titleColumn(
+                                                    title: 'Booking Id',
+                                                    value: details
+                                                        .data[index].booingId,
+                                                  ),
+                                                  titleColumn(
+                                                    value: details
+                                                        .data[index].doctorName,
+                                                    title: 'Doctor Name',
+                                                  ),
+                                                  titleColumn(
+                                                    value: details
+                                                        .data[index].location,
+                                                    title: 'Location',
+                                                  ),
+                                                ],
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 10.0),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceEvenly,
+                                                  children: [
+                                                    Text(
+                                                      details
+                                                          .data[index].status,
+                                                      style: GoogleFonts.lato(
+                                                          color:
+                                                              Color(0xffD68100),
+                                                          fontSize: 10,
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    ),
+                                                    Text(
+                                                      '\$${details.data[index].fees}',
+                                                      style:
+                                                          GoogleFonts.poppins(
+                                                              color: Color(
+                                                                  0xff252525),
+                                                              fontSize: 16,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                    )
+                                                  ],
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 40,
+                                  width: double.infinity,
+                                  child: TextButton(
+                                    style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all<Color>(
+                                                appblueColor),
+                                        shape: MaterialStateProperty.all<
+                                                RoundedRectangleBorder>(
+                                            RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.only(
+                                              bottomLeft: Radius.circular(15),
+                                              bottomRight: Radius.circular(15)),
+                                        ))),
+                                    onPressed: () {
+                                      Push(
+                                          context,
+                                          ViewBookingDetails(
+                                            booking_id:
+                                                details.data[index].booingId,
+                                          ));
+                                    },
+                                    child: Text(
+                                      'View Booking Details',
+                                      style: GoogleFonts.montserrat(
+                                          fontSize: 12,
+                                          color: Colors.white,
+                                          letterSpacing: 1,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                )
+                              ],
                             ),
-                          )
-                        ],
-                      ),
-                    ),
-                  );
-                }),
-          )
-        ],
-      ),
+                          ),
+                        );
+                      }),
+                )
+              ],
+            ),
     );
   }
 }
