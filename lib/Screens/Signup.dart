@@ -90,6 +90,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       onChanged: (v) {
                         print(v.toString());
                         _con.countrycode = v.dialCode.toString();
+
                         print(_con.countrycode);
                       },
                       // Initial selection and favorite can be one of code ('IT') OR dial_code('+39')
