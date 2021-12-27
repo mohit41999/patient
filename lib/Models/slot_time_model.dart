@@ -56,7 +56,7 @@ class TimeSlot {
     required this.status,
   });
 
-  String slotTime;
+  dynamic slotTime;
   String status;
 
   factory TimeSlot.fromJson(Map<String, dynamic> json) => TimeSlot(

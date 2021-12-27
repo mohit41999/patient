@@ -731,50 +731,57 @@ class _DoctorProfile1State extends State<DoctorProfile1> {
           height: 34,
           child: ListView.builder(
             itemBuilder: (context, index) {
-              int am = int.parse(
-                  slot_time.data.timeSlot[index].slotTime.substring(0, 2));
-              return (am >= startTime && am < endTime)
-                  ? Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: commonBtn(
-                        s: slot_time.data.timeSlot[index].slotTime
-                                .substring(0, 5)
-                                .toString() +
-                            time,
-                        bgcolor: slot_time.data.timeSlot[index].status ==
-                                'availiable'
-                            ? (_selectedindex == index)
-                                ? apptealColor
-                                : Colors.white
-                            : Colors.white,
-                        textColor: slot_time.data.timeSlot[index].status ==
-                                'availiable'
-                            ? (_selectedindex == index)
-                                ? Colors.white
-                                : apptealColor
-                            : Colors.grey,
-                        onPressed: () {
-                          setState(() {
-                            _selectedindex = index;
-                            selectedTime =
-                                slot_time.data.timeSlot[index].status ==
+              print(slot_time.data.timeSlot[index].slotTime);
+              int am = (slot_time.data.timeSlot[index].slotTime.toString() ==
+                      null.toString())
+                  ? 0
+                  : int.parse(
+                      slot_time.data.timeSlot[index].slotTime.substring(0, 2));
+              return (am == 0)
+                  ? Container()
+                  : (am >= startTime && am < endTime)
+                      ? Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: commonBtn(
+                            s: slot_time.data.timeSlot[index].slotTime
+                                    .substring(0, 5)
+                                    .toString() +
+                                time,
+                            bgcolor: slot_time.data.timeSlot[index].status ==
+                                    'availiable'
+                                ? (_selectedindex == index)
+                                    ? apptealColor
+                                    : Colors.white
+                                : Colors.white,
+                            textColor: slot_time.data.timeSlot[index].status ==
+                                    'availiable'
+                                ? (_selectedindex == index)
+                                    ? Colors.white
+                                    : apptealColor
+                                : Colors.grey,
+                            onPressed: () {
+                              setState(() {
+                                _selectedindex = index;
+                                selectedTime = slot_time
+                                            .data.timeSlot[index].status ==
                                         'availiable'
                                     ? slot_time.data.timeSlot[index].slotTime
                                     : '';
-                            print(selectedTime + '${_selectedindex}');
-                          });
-                        },
-                        textSize: 12,
-                        width: 100,
-                        borderRadius: 0,
-                        borderWidth: 1,
-                        borderColor: slot_time.data.timeSlot[index].status ==
-                                'availiable'
-                            ? apptealColor
-                            : Colors.grey,
-                      ),
-                    )
-                  : Container();
+                                print(selectedTime + '${_selectedindex}');
+                              });
+                            },
+                            textSize: 12,
+                            width: 100,
+                            borderRadius: 0,
+                            borderWidth: 1,
+                            borderColor:
+                                slot_time.data.timeSlot[index].status ==
+                                        'availiable'
+                                    ? apptealColor
+                                    : Colors.grey,
+                          ),
+                        )
+                      : Container();
             },
             itemCount: slot_time.data.timeSlot.length,
             scrollDirection: Axis.horizontal,
