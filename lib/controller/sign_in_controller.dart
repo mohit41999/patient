@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:patient/API%20repo/api_constants.dart';
 import 'package:patient/Screens/biometric_authenticate.dart';
 import 'package:patient/Utils/progress_view.dart';
+import 'package:patient/firebase/fcm.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -19,6 +20,7 @@ class SignInController {
   login(BuildContext context, dynamic value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('user_id', value['data']['id']);
+    FireBaseSetup().storefcmToken();
     print(prefs.getString('user_id'));
 
     Push(context, BiometricAuthenticate());

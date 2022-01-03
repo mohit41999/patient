@@ -8,7 +8,7 @@ import 'package:patient/controller/NavigationController.dart';
 
 import 'package:patient/widgets/common_app_bar_title.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import 'general_screen.dart';
 
 class BiometricAuthenticate extends StatefulWidget {
@@ -30,8 +30,13 @@ class _BiometricAuthenticateState extends State<BiometricAuthenticate> {
       ),
       body: GestureDetector(
         onTap: () async {
+          SharedPreferences prefs = await SharedPreferences.getInstance();
           final isAuthenticated = await LocalAuthApi.authenticate(context);
           if (isAuthenticated) {
+            prefs.setString('isbiometric', 'yes');
+            Push(context, GeneralScreen());
+          } else {
+            prefs.setString('isbiometric', 'no');
             Push(context, GeneralScreen());
           }
         },

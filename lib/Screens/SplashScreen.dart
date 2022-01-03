@@ -3,6 +3,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:patient/Screens/SignInScreen.dart';
+import 'package:patient/Screens/general_screen.dart';
+import 'package:patient/firebase/fcm.dart';
 import 'biometric_authenticate.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -22,14 +24,19 @@ class _SplashScreenState extends State<SplashScreen> {
         () => (prefs.get('user_id').toString() == null.toString())
             ? Navigator.pushReplacement(context,
                 MaterialPageRoute(builder: (context) => SignInScreen()))
-            : Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => BiometricAuthenticate())));
+            : (prefs.get('isbiometric').toString() == 'yes')
+                ? Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => BiometricAuthenticate()))
+                : Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => GeneralScreen())));
   }
 
+  FireBaseSetup fireBaseSetup = FireBaseSetup();
   @override
   void initState() {
+    fireBaseSetup.storefcmToken();
     navigate();
 
     super.initState();
