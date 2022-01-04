@@ -1,23 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:patient/Models/home_doctor_speciality_model.dart';
-import 'package:patient/Screens/DoctorScreens/doctor_profile_1.dart';
 import 'package:patient/Screens/DoctorScreens/doctor_profile.dart';
-import 'package:patient/Screens/LabProfile.dart';
-import 'package:patient/Screens/MedicineProfile.dart';
-import 'package:patient/Screens/Products.dart';
-import 'package:patient/Screens/Signup.dart';
-import 'package:patient/Screens/patient_home_page_4.dart';
 import 'package:patient/Utils/colorsandstyles.dart';
+import 'package:patient/controller/NavigationController.dart';
 import 'package:patient/controller/home_controller.dart';
 import 'package:patient/widgets/commonAppBarLeading.dart';
-import 'package:patient/widgets/navigation_drawer.dart';
-
-import 'package:google_fonts/google_fonts.dart';
-
-import 'package:patient/controller/NavigationController.dart';
 import 'package:patient/widgets/common_app_bar_title.dart';
 import 'package:patient/widgets/common_button.dart';
 import 'package:patient/widgets/common_row.dart';
+import 'package:patient/widgets/navigation_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -40,12 +32,14 @@ class _HomeScreenState extends State<HomeScreen> {
     },
     {
       'label': 'Health care & Other product',
-      'Screen': ProductPage(),
+      'Screen': 'null',
+      // 'Screen': ProductPage(),
       'profile': 'Rectangle 69.png'
     },
     {
       'label': 'Home Care Servicies',
-      'Screen': PatientHomePage4(),
+      'Screen': 'null',
+      // 'Screen': PatientHomePage4(),
       'profile': 'Rectangle 69.png'
     },
     {
@@ -55,13 +49,15 @@ class _HomeScreenState extends State<HomeScreen> {
     },
     {
       'label': 'Lab Tests',
-      'Screen': LabProfile(),
+      'Screen': 'null',
+      // 'Screen': LabProfile(),
       'profile': 'Rectangle 69.png'
     },
     {'label': 'Ask Questions', 'Screen': 'null', 'profile': 'Rectangle 69.png'},
     {
       'label': 'Medicine',
-      'Screen': MedicineProfile(),
+      'Screen': 'null',
+      // 'Screen': MedicineProfile(),
       'profile': 'Rectangle 69.png'
     },
     {
