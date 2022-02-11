@@ -1,5 +1,4 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/material.dart';
 import 'package:patient/API%20repo/api_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -15,7 +14,7 @@ class FireBaseSetup {
       } else {
         PostData(PARAM_URL: 'add_fcm_token.php', params: {
           'token': Token,
-          'doctor_id': prefs.getString('user_id'),
+          'user_id': prefs.getString('user_id'),
           'fcm_token': value
         });
       }
